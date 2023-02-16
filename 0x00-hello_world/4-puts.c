@@ -1,7 +1,7 @@
 #include <stdio.h>
-/*Print text to screen */
 int main(void)
 {
+	/*Print text to screen */
 	puts("Programming is like building a multilingual puzzle");
-	return 0;
+	return(0);
 }
