@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -Xassembler $CFILE -o main.s
+gcc -S $CFILE
