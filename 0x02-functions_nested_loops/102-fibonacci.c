@@ -6,9 +6,9 @@
  */
 int main(void)
 {
-	int i = 0;
+	long i, j, k;
 
-	long j = 1, k = 2;
+	i = 0, j = 1, k = 2;
 	while (i < 50)
 	{
 		if (i == 0)
