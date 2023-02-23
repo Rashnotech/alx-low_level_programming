@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * print_numbers - print an integer value 0 - 9
  *
