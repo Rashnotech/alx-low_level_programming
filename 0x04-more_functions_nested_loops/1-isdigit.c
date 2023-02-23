@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * _isdigit - check if a digit is supplied
  * @c: an operand for supplied value
@@ -7,19 +6,8 @@
  */
 int _isdigit(int c)
 {
-	int i;
-
-	i = '0';
-	while (i <= '9')
-	{
-		if (c == i)
-		{
-			return (1);
-		}
-		else
-		{
-			return (0);
-		}
-		i++;
-	}
+	if ((c >= 0 && c <= 9) || (c >= 48 && c <=57))
+		return (1);
+	else
+		return (0);
 }
