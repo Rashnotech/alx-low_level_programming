@@ -8,8 +8,8 @@ int _isdigit(int c)
 {
 	int i;
 
-	i = 0;
-	while (i <= 9)
+	i = '0';
+	while (i <= '9')
 	{
 		if (c == i)
 		{
