@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * print_most_numbers - skip 2 and 4
  *
