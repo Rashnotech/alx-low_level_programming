@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _isdigit - check if a digit is supplied
  * @c: an operand for supplied value
