@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _puts - print a string or character constant
  * @str: an operand with character type
