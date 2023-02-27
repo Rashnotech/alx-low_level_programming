@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * print_rev - print a string reversal
+ * rev_string - print a string reversal
  * @s: an operand declare as pointer/ array
  *
  * Description: display string of character in reverse
  */
-void print_rev(char *s)
+void rev_string(char *s)
 {
 	int i, len;
 
