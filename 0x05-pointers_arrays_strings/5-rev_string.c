@@ -1,6 +1,8 @@
 /**
  * rev_string - print a string reversal
  * @s: an operand declare as pointer/ array
+ *
+ * Description: display string of character in reverse
  */
 void print_rev(char *s)
 {
@@ -14,7 +16,6 @@ void print_rev(char *s)
 	}
 	for (i = len - 1; s[i]; i--)
 	{
-		_putchar(s[i]);
+		*s = s[i];
 	}
-	_putchar(10);
 }
