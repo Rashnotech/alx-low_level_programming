@@ -5,9 +5,5 @@
  */
 void reset_to_98(int *n)
 {
-	int *ptr = &n;
-
-	*ptr = 98;
-	_putchar((*ptr / 10) + '0');
-	_putchar((*ptr % 10) + '0');
+	*n = 98;
 }
