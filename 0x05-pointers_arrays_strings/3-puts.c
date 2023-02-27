@@ -7,5 +7,5 @@ void _puts(char *str)
 	int i;
 
 	for (i = 0; *str; i++)
-		_putchar(*str++);
+		return (*str++);
 }
