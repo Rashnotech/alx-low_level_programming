@@ -10,9 +10,9 @@ int _strlen(char *s)
 	char c[50];
 
 	len = 1;
-	for (i = 0; *str; i++)
+	for (i = 0; *s; i++)
 	{
-		c[i] = *str++;
+		c[i] = *s++;
 	}
 	for (i = 0; c[i]; i++)
 	{
