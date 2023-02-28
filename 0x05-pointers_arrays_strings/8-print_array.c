@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * print_array - print an integer value
  * @a: an operand with integer data type
@@ -10,9 +11,9 @@ void print_array(int *a, int n)
 
 	for (i = 0; *a; i++)
 	{
-		if (i != n)
+		if (i != (n - 1))
 		{
-			printf("%ld", *a++);
+			printf("%d", *a++);
 			printf(", ");
 		}
 	}
