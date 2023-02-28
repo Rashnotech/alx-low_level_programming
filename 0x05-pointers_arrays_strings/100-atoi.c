@@ -7,17 +7,27 @@
  */
 int _atoi(char *s)
 {
-	int res, sign, i;
+	int res, sign, i, len;
 
 	res = 0;
 	sign = 1;
 	i = 0;
-	if (s[0] == '-')
+	len = 0;
+	while (*s++ != '\0')
+		lent++;
+	for (; *s++; i++)
 	{
-		sign = -1;
-		i++;
+		if (*s++ == '-')
+		{
+			sign = -1;
+			++i;
+		}
+		else
+		{
+			sign = 1;
+			++i;
+		}
+		res = res * 10 + *s++ - '0'
 	}
-	for (; s[i] != '\0'; ++i)
-		res = res * 10 + s[i] - '0';
 	return sign * res;
 }
