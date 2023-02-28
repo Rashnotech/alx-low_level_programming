@@ -13,8 +13,6 @@ int _atoi(char *s)
 	sign = 1;
 	i = 0;
 	len = 0;
-	while (*s++ != '\0')
-		lent++;
 	for (; *s++; i++)
 	{
 		if (*s++ == '-')
@@ -27,7 +25,7 @@ int _atoi(char *s)
 			sign = 1;
 			++i;
 		}
-		res = res * 10 + *s++ - '0'
+		res = res * 10 + *s++ - '0';
 	}
-	return sign * res;
+	return (sign * res);
 }
