@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdio.h>
-#include <string.h>
 /**
  * print_array - print an integer value
  * @a: an operand with integer data type
@@ -12,8 +11,10 @@ void print_array(int *a, int n)
 
 	for (i = 0; i < n; i++)
 	{
-		if (strlen(a[i]) == n)
-			break;
+		if (i == (n - 1))
+		{
+			printf("%d",a[i]);
+		}
 		printf("%d", a[i]);
 		printf(", ");
 	}
