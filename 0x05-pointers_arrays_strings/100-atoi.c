@@ -7,12 +7,11 @@
  */
 int _atoi(char *s)
 {
-	int res, sign, i, len;
+	int res, sign, i;
 
 	res = 0;
 	sign = 1;
 	i = 0;
-	len = 0;
 	for (; *s++; i++)
 	{
 		if (*s++ == '-')
