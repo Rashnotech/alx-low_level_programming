@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * *_strncat - concatenate two string of n characters
  * @dest: an operand for destination string
