@@ -2,7 +2,7 @@
 /**
  * reverse_array - reverse an integer
  * @a: an array of integer
- * n: number of element to be swap
+ * @n: number of element to be swap
  *
  */
 void reverse_array(int *a, int n)
