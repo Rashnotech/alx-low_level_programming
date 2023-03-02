@@ -18,16 +18,17 @@ char *cap_string(char *str)
 			case 0:
 			case '\n':
 			case '\t':
-			case 32:
-			case 33:
-			case 34:
-			case 40:
-			case 41:
-			case 44:
-			case 59:
-			case 63:
-			case 123:
-			case 125:
+			case ',':
+			case ';':
+			case '.':
+			case '!':
+			case '?':
+			case '"':
+			case '(':
+			case ')':
+			case '{':
+			case '}':
+			case ' ':
 				str[i] -= 32;
 		}
 		i++;
