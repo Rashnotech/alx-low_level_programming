@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * _strcmp - compare two string if they match
  * @s1: first string characters
