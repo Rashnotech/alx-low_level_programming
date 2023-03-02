@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * *_strncpy - copy a (n) number of string
  * @dest: an operand to contain copied string
