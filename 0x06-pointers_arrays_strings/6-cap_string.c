@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * *cap_string - captalize each word in a sentence
  * @str: an operand for string
@@ -10,13 +9,13 @@ char *cap_string(char *str)
 	int i;
 
 	if (str[0] >= 97 && str[0] <= 122)
-		str[0] += 32;
-	for (i = 1; *str; i++)
+		str[0] -= 32;
+	for (i = 1; str[i]; ++i)
 	{
 		switch (str[i])
 		{
-			case 9:
-			case 10:
+			case '\n':
+			case '\t':
 			case 32:
 			case 33:
 			case 34:
