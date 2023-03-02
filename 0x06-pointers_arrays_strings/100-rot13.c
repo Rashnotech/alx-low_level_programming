@@ -6,16 +6,17 @@
  */
 char *rot13(char *str)
 {
-	int i;
+	int i, j;
+	char letter[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char swap[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
 
-	i = 0;
-	while (str[i] != '\0')
+	for (i = 0; str[i]; i++)
 	{
-		if ((str[i] >= 65 && str[i] <= 77) || (str[i] >= 97 && str[i] <= 109))
-			str[i] = str[i] + 13;
-		else if ((str[i] >= 78 && str[i] <= 90) || (str[i] >= 110 && str[i] <= 122))
-			str[i] = str[i] - 13;
-		i++;
+		for (j = 0; letter[j]; j++)
+		{
+			if (str[i] == letter[j])
+				str[i] = swap[j];
+		}
 	}
 	return (str);
 }
