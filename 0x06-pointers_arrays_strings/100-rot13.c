@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * *rot13 - Encrypt a string of character
  * @str: a string of character to be encode
