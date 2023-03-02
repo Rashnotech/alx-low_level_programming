@@ -6,22 +6,18 @@
  */
 char *leet(char *str)
 {
-	int i;
+	int i, j;
+	char list[] = "aAeEoOtTlL";
+	char code[] = "4433007711"
 
-	i = 0;
-	while (str[i] != '\0')
+	for (i = 0; str[i]; i++)
 	{
-		if (str[i] == 'a' || str[i] == 'A')
-			str[i] = '4';
-		else if (str[i] == 'e' || str[i] == 'E')
-			str[i] = '3';
-		else if (str[i] == 'o' || str[i] == 'O')
-			str[i] = '0';
-		else if (str[i] == 't' || str[i] == 'T')
-			str[i] = '7';
-		else if (str[i] == 'l' || str[i] == 'L')
-			str[i] = '1';
-		i++;
+		for (j = 0; list[j]; j++)
+		{
+			if (str[i] == list[j])
+				str[i] = code[j];
+		}
+
 	}
 	return (str);
 }
