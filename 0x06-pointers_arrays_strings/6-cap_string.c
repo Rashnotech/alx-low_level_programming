@@ -10,7 +10,7 @@ char *cap_string(char *str)
 
 	if (str[0] >= 97 && str[0] <= 122)
 		str[0] -= 32;
-	for (i = 1; str[i]; ++i)
+	for (i = 1; str[i]; i++)
 	{
 		switch (str[i])
 		{
