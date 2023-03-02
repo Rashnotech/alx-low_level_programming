@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * *leet - convert {a,e,o,l,t} to code
  * @str: string of characters
@@ -7,18 +6,22 @@
  */
 char *leet(char *str)
 {
-	while (*str++ != '\0')
+	int i;
+	
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*str == 'a' || *str == 'A')
+		if (str[i] == 'a' || str[i] == 'A')
 			str = 4;
-		else if (*str == 'e' || *str == 'E')
+		else if (str[i] == 'e' || str[i] == 'E')
 			str = 3;
-		else if (*str == 'o' || *str == 'O')
+		else if (str[i] == 'o' || str[i] == 'O')
 			str = 0;
-		else if (*str == 't' || *str == 'T')
+		else if (str[i] == 't' || str[i] == 'T')
 			str = 7;
-		else if (*str == 'l' || *str == 'L')
+		else if (str[i] == 'l' || str[i] == 'L')
 			str = 1;
+		i++;
 	}
 	return (str);
 }
