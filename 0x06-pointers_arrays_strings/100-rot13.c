@@ -15,7 +15,10 @@ char *rot13(char *str)
 		for (j = 0; letter[j]; j++)
 		{
 			if (str[i] == letter[j])
+			{
 				str[i] = swap[j];
+				break;
+			}
 		}
 	}
 	return (str);
