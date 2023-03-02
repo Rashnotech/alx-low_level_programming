@@ -7,12 +7,16 @@
  */
 char *rot13(char *str)
 {
-	while (*str++ != '\0')
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if ((*str >= 65 && *str <= 77) || (*str >= 97 && *str <= 109))
-			str = *str + 13;
-		else if ((*str >= 78 && *str <= 90) || (*str >= 110 && *str <= 122))
-			str = *str - 13;
+		if ((str[i] >= 65 && str[i] <= 77) || (str[i] >= 97 && str[i] <= 109))
+			str[i] = str[i] + 13;
+		else if ((str[i] >= 78 && str[i] <= 90) || (str[i] >= 110 && str[i] <= 122))
+			str[i] = str[i] - 13;
+		i++;
 	}
 	return (str);
 }
