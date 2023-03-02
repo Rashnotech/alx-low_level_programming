@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * string_toupper - convert character to uppercase
  * @c: an operand for string of character
@@ -9,10 +8,12 @@ char *string_toupper(char *c)
 {
 	int i;
 
-	while (*c++ != '\0')
+	i = 0;
+	while (c[i] != '\0')
 	{
-		if (*c >= 97 && *c <= 122)
-			c = *c + 32;
+		if (c[i] >= 97 && c[i] <= 122)
+			c[i] = c[i] + 32;
+		i++;
 	}
 	return (c);
 }
