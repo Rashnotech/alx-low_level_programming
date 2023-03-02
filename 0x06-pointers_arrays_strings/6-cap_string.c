@@ -13,8 +13,9 @@ char *cap_string(char *str)
 	{
 		while (!(str[i] >= 97 && str[i] <= 122))
 			i++;
-		switch (str[i + 1])
+		switch (str[i - 1])
 		{
+			case 0:
 			case '\n':
 			case '\t':
 			case 32:
