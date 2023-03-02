@@ -11,9 +11,9 @@ char *string_toupper(char *c)
 	i = 0;
 	while (c[i] != '\0')
 	{
-		if (c[i] >= 97 && c[i] <= 122)
-			c[i] = c[i] + 32;
-		i++;
+		if (c[i] >= 'a' && c[i] <= 'z')
+			c[i] -= 32;
+		++i;
 	}
 	return (c);
 }
