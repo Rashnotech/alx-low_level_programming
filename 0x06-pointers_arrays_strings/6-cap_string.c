@@ -30,7 +30,7 @@ char *cap_string(char *str)
 				case 125:
 					continue;
 			}
-		i++;
+		++i;
 	}
 	return (str);
 }
