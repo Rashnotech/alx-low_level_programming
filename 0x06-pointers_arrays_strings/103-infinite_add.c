@@ -1,81 +1,56 @@
-char *add_strings(char *n1, char *n2, char *r, int r_index);
-char *infinite_add(char *n1, char *n2, char *r, int size_r);
-
 /**
- * add_strings - Adds the numbers stored in two strings.
- * @n1: The string containing the first number to be added.
- * @n2: The string containing the second number to be added.
- * @r: The buffer to store the result.
- * @r_index: The current index of the buffer.
+ * _strlen - find the string length of a string
+ * @n: an operand for input character
  *
- * Return: If r can store the sum - a pointer to the result.
- *         If r cannot store the sum - 0.
+ * Return: string length of character
  */
-
-char *add_strings(char *n1, char *n2, char *r, int r_index)
+int _strlen(char *n)
 {
-	int num, tens = 0;
+	int len;
 
-	for (; *n1 && *n2; n1--, n2--, r_index--)
-	{
-		num = (*n1 - '0') + (*n2 - '0');
-		num += tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-
-	for (; *n1; n1--, r_index--)
-	{
-		num = (*n1 - '0') + tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-
-	for (; *n2; n2--, r_index--)
-	{
-		num = (*n2 - '0') + tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-
-	if (tens && r_index >= 0)
-	{
-		*(r + r_index) = (tens % 10) + '0';
-		return (r + r_index);
-	}
-
-	else if (tens && r_index < 0)
-		return (0);
-
-	return (r + r_index + 1);
+	for (len = 0; *n; n++)
+		len++;	
+	return len;
 }
 /**
- * infinite_add - Adds two numbers.
- * @n1: The first number to be added.
- * @n2: The second number to be added.
- * @r: The buffer to store the result.
- * @size_r: The buffer size.
+ * *infinite_add - add two numbers together of type char
+ * @n1: an operand of the first number
+ * @n2: an operand for the second number
+ * @r: to store the result for the computations
+ * @size_r: buffer size of result to be printed
  *
- * Return: If r can store the sum - a pointer to the result.
- *         If r cannot store the sum - 0.
+ * Return: an char of 0 otherwise result
  */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int index, n1_len = 0, n2_len = 0;
+	int counter; i, j, len1, len2;
 
-	for (index = 0; *(n1 + index); index++)
-		n1_len++;
-
-	for (index = 0; *(n2 + index); index++)
-		n2_len++;
-
-	if (size_r <= n1_len + 1 || size_r <= n2_len + 1)
-		return (0);
-
-	n1 += n1_len - 1;
-	n2 += n2_len - 1;
-	*(r + size_r) = '\0';
-
-	return (add_strings(n1, n2, r, --size_r));
+	counter = 0;
+	len1 = _strlen(n1);
+	len2 = _strlen(n2);
+	if (len1 >= size_r || len >= size_r || counter >= size_r)
+		return 0;
+	i = len1 - 1;
+	j = len2 - 1;
+	while (i >= 0 || j >= 0 || counter >= 0)
+	{
+		sum = counter;
+		if (i >= 0)
+		{
+			sum += n1[i] - '0';
+			i--;
+		}
+		if (j >= 0)
+		{
+			sum += n2[j] - '0';
+			j--;
+		}
+		counter = sum / 10;
+		if(_strlen(r) < size_r - 1)
+			*r++ = sum % 10 + '0';
+		else
+			return 0;
+	}
+	*r = '\0';
+	return r;
 }
