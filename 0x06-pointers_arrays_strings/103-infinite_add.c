@@ -26,12 +26,12 @@ int _strlen(char *n)
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int counter, i, j, sum, len_r, len1, len2;
+	int counter, i, j, sum, len1, len2;
 
 	counter = 0;
 	len1 = _strlen(n1);
 	len2 = _strlen(n2);
-	if (len1 >= size_r || len >= size_r || counter >= size_r)
+	if (len1 >= size_r || len >= size_r)
 		return (0);
 	i = len1 - 1;
 	j = len2 - 1;
@@ -50,10 +50,13 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		}
 		counter = sum / 10;
 		if (_strlen(r) < size_r - 1)
-			*r++ = sum % 10 + '0';
+			(*r)++ = sum % 10 + '0';
 		else
 			return (0);
 	}
+	if (counter != 0)
+		return (0);
+
 	*r = '\0';
 	return (r);
 }
