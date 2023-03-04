@@ -28,7 +28,7 @@ void _reverse(char *str)
 	for (i = 0; i < len / 2; i++)
 	{
 		temp = str[len - i - 1];
-		str[len - i - 1] = temp;
+		str[len - i - 1] = str[i];
 		str[i] = temp;
 	}
 }
