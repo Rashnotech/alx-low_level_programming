@@ -68,7 +68,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		i--;
 		j--;
 	}
-	if (counter != 0)
+	if (max = size_r)
 		return (0);
 	r[max + 1] = '\0';
 	_reverse(r);
