@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * *infinite_add - add two numbers together of type char
  * @n1: an operand of the first number
