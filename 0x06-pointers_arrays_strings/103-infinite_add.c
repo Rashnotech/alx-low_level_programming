@@ -1,4 +1,20 @@
-#include "main.h"
+int _strlen(char *n);
+char *infinite_add(char *n1, char *n2, char *r, int size_r);
+/**
+ * _strlen - find the string length
+ * @n: an operand to keep character
+ *
+ * Return: an integer value
+ */
+int _strlen(char *n)
+{
+	int len;
+
+	for (len = 0; *n != '\0'; n++)
+		len++;
+	return (len);
+}
+
 /**
  * *infinite_add - add two numbers together of type char
  * @n1: an operand of the first number
@@ -10,15 +26,11 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int counter, i, j, len_r, len1, len2;
+	int counter, i, j, sum, len_r, len1, len2;
 
 	counter = 0;
-	for (len1 = 0; *n1 != '\0'; n1++)
-		len1++;
-	for (len2 = 0; *n2 != '\0'; n2++)
-		len2++;
-	for (len_r = 0; *r != '\0'; r++)
-		len_r++;
+	len1 = _strlen(n1);
+	len2 = _strlen(n2);
 	if (len1 >= size_r || len >= size_r || counter >= size_r)
 		return (0);
 	i = len1 - 1;
@@ -37,7 +49,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			j--;
 		}
 		counter = sum / 10;
-		if (len_r < size_r - 1)
+		if (_strlen(r) < size_r - 1)
 			*r++ = sum % 10 + '0';
 		else
 			return (0);
