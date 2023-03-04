@@ -57,15 +57,11 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		sum = counter;
 		if (i >= 0)
 			sum += n1[i] - '0';
-		else
-			sum = 0;
 		if (j >= 0)
 			sum += n2[j] - '0';
-		else 
-			sum = 0;
 		counter = sum / 10;
 		if (_strlen(r) < (size_r - 1))
-			r[max] = sum % 10 + '0';
+			r[max] = (sum % 10) + '0';
 		else
 			return (0);
 		max++;
