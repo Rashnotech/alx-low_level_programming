@@ -6,19 +6,21 @@
  *
  * Return: an integer value of 0
  */
-#define PASSWORD_LENGTH 16
+
 int main(void)
 {
-	int i;
-	char *charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_+=";
-	char password[PASSWORD_LENGTH + 1];
+	int r = 0, c = 0;
+	time_t t;
 
-	srand(time(NULL));
-	for (i = 0; i < PASSWORD_LENGTH; i++)
+	srand((unsigned int) time(&t));
+	while (c < 2772)
 	{
-		password[i] = charset[rand() % (sizeof(charset) - 1)];
+		r = rand() % 128;
+		if ((c + r) > 2772)
+			break;
+		c = c + r;
+		printf("%c", r);
 	}
-	password[PASSWORD_LENGTH] = '\0';
-	printf("%s\n", password);
+	printf("%c\n", (2772 - c));
 	return (0);
 }
