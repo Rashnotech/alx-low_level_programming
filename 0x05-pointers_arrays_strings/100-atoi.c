@@ -7,14 +7,14 @@
  */
 int _atoi(char *s)
 {
-	int sign, i, num;
+	int sign, i, digit,  num;
 
-	sign = 1, i = 0, num = 0;
+	sign = 0, i = 0, num = 0;
 	while (s[i] == ' ')
 		i++;
 	if (s[i] == '-')
 	{
-		sign = -1;
+		++sign;
 		i++;
 	}
 	else if (s[i] == '+')
@@ -23,14 +23,14 @@ int _atoi(char *s)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			if (s[i - 1] == ' ')
-				sign = 1;
-			num = num * 10 + (s[i] - '0');
+			digit = s[i] - '0';
+			if (sign % 2)
+				digit = -digit;
+			num = num * 10 + digit;
 			if (s[i + 1] < '0' || s[i + 1] > '9')
 				break;
 		}
 		i++;
 	}
-	num *= sign;
 	return (num);
 }
