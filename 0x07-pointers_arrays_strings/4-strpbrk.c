@@ -1,5 +1,5 @@
 /**
- * _strbrk - find the match character of accept in a string
+ * _strpbrk - find the match character of accept in a string
  * @s: string of characters
  * @accept: substring of char
  *
