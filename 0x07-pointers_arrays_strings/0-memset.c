@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _memset - fill in a memory with constant bytes
  * @s: memory area of the buffer
