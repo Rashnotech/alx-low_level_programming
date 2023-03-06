@@ -1,5 +1,5 @@
 /**
- * _strspn - 
+ * _strspn - find the position of a substring in a string
  * @s: string of characters
  * @accept: substring to check position
  *
@@ -9,7 +9,7 @@ unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int i;
 
-	i = 0 ;
+	i = 1;
 	while (*s != '\0' && *accept != '\0')
 	{
 		if (*s != *accept)
