@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * set_string - set the value of pointer to char
  * @s: pointer
