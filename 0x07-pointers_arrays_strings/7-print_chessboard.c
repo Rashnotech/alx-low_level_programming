@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * print_chessboard - print a chessboard
  * @a: operand with a pointer address
