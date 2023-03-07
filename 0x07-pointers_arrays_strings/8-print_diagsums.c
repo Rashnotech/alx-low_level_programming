@@ -1,3 +1,4 @@
+#include"main.h"
 /**
  * print_diagsums - progam that print two diagonal matrix
  * @a: a matrix
