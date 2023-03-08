@@ -15,7 +15,6 @@ int _sqrt_recursion(int n)
 	if (x * x == n)
 	{
 		return (x);
-		//((x + n / x) / 2);
 	}
 	else
 	{
