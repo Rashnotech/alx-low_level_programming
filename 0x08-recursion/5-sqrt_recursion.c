@@ -7,17 +7,17 @@
  */
 int _sqrt_recursion(int n)
 {
-	int x;
+	int x, y;
 
 	if (n == 1 || n == 0)
 		return (n);
-	x = _sqrt_recursion(n - 1);
-	if (x * x == n)
-	{
-		return (x);
-	}
 	else
 	{
-		return (-1);
+		x = _sqrt_recursion(n - 1);
+		y = ((x + n / x) / 2);
+		if (y * y == n)
+			return (y);
+		else
+			return (-1);
 	}
 }
