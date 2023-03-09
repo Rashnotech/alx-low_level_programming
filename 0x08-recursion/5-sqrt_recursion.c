@@ -19,7 +19,14 @@ int _sqrt_recursion(int n)
 	}
 	else
 	{
-		x = _sqrt_recursion(n - 1);
-		return ((x * x <= n) ? x : x - 1);
+		x = _sqrt_recursion(n / 4) * 2;
+		if ((x + 1) * (x + 1) <= n)
+		{
+			return (x + 1);
+		}
+		else
+		{
+		return (x);
+		}
 	}
 }
