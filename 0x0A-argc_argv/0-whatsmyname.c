@@ -6,8 +6,9 @@
  *
  * Return: an integer of 0 otherwise 1
  */
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-	_putchar(argv[0]);
+	putchar(argv[0]);
+	putchar(10);
 	return (0);
 }
