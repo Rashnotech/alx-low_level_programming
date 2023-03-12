@@ -9,48 +9,28 @@
  */
 int main(int argc, char *argv[])
 {
-	int rem, result, num;
+	int coins[] = {25, 10, 5, 2, 1};
+	int rem, i, result, num;
 
-	if (argc == 2)
-	{
-		num = atoi(argv[1]);
-		if (num < 0)
-			printf("0\n");
-		while ( num != 0)
-		{
-			if (num >= 25)
-			{
-				result = num / 25;
-				rem = num % 25;
-			}
-			else if (num >= 10)
-			{
-				result += (num / 10);
-				rem = num % 10;
-			}
-			else if (num >= 5)
-			{
-				result += (num / 5);
-				rem = num % 5;
-			}
-			else if (num >= 2)
-			{
-				result += (num / 2);
-				rem = num % 2;
-			}
-			else
-			{
-				result += (num / 1);
-				rem = num % 1;
-			}
-			num = rem;
-		}
-		printf("%d\n", result);
-	}
-	else
+	result = 0, i = 0;
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
+	if (num < 0)
+		printf("0\n");
+
+	while (i < 5 && num != 0)
+	{
+		if (num >= coins[i])
+		{
+			result += num / coins[i];
+			rem = num % coins[i];
+			num = rem;
+		}
+		i++;
+	}
+	printf("%d\n", result);
 	return (0);
 }
