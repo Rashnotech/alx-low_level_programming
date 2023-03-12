@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	if (argc >= 2 && argc <= 3)
+	else
 	{
 		for (counter = 1; counter <= 2; counter++)
 			mult *= atoi(argv[counter]);
