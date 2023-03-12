@@ -9,19 +9,16 @@
  */
 int main(int argc, char *argv[])
 {
-	int counter, mult;
+	int num1, num2, mult;
 
-	mult = 1;
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-	else
-	{
-		for (counter = 1; counter <= 2; counter++)
-			mult *= atoi(argv[counter]);
-		printf("%d\n", mult);
-	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	mult = num1 * num2;
+	printf("%d\n", mult);
 	return (0);
 }
