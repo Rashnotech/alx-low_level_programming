@@ -19,7 +19,7 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	if (s1)
 	{
-		for (; *s1; i++)
+		for (i = 0; *s1; i++)
 			ptr_str[i] = s1[i];
 	}
 	if (s2)
