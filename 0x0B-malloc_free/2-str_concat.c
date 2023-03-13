@@ -19,8 +19,8 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	if (s1 == NULL)
 	{
-		temp = " ";
-		ptr_str++ = temp
+		temp[2] = " ";
+		*ptr_str++ = temp[0];
 	}
 	else
 	{
@@ -29,12 +29,12 @@ char *str_concat(char *s1, char *s2)
 	}
 	if (s2 == NULL)
 	{
-		temp = "";
-		ptr_str[i] = temp;
+		temp[2] = "";
+		ptr_str[i] = temp[0];
 	}
 	else
 	{
-		while (*s2 != '\0' && *s2 != NULL)
+		while (*s2 != '\0')
 		{
 			ptr_str[i] = *s2++;
 			i++;
