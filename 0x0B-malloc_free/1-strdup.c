@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /**
  * _strdup - copy a string given as a parameter
  * @str: string literal
@@ -15,7 +16,7 @@ char *_strdup(char *str)
 	i = 0;
 	if (str == NULL)
 		return (NULL);
-	ptr_str = malloc(sizeof(str) + 1);
+	ptr_str = malloc(strlen(str) + 1);
 	if (ptr_str == NULL)
 	{
 		return (NULL);
