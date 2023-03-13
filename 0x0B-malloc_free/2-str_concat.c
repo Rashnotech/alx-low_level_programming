@@ -14,15 +14,21 @@ char *str_concat(char *s1, char *s2)
 	char *ptr_str;
 	int i;
 
-	ptr_str = malloc(strlen(s1) + strlen(s2) + 1);
+	ptr_str = malloc((strlen(s1) + strlen(s2) + 1) * sizeof(char));
 	if (ptr_str == NULL)
 		return (NULL);
-	for (; *s1; i++)
-		ptr_str[i] = s1[i];
-	while (*s2 != '\0')
+	if (s1)
 	{
-		ptr_str[i] = *s2++;
-		i++;
+		for (; *s1; i++)
+			ptr_str[i] = s1[i];
+	}
+	if (s2)
+	{
+		while (*s2 != '\0')
+		{
+			ptr_str[i] = *s2++;
+			i++;
+		}
 	}
 	ptr_str[i] = '\0';
 	return (ptr_str);
