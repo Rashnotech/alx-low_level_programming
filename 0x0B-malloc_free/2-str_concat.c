@@ -23,7 +23,7 @@ char *str_concat(char *s1, char *s2)
 		ptr_str[i] = s1[i];
 	while (*s2 != '\0')
 	{
-		ptr_str[i] = s2++;
+		ptr_str[i] = *s2++;
 		i++;
 	}
 	ptr_str[i] = '\0';
