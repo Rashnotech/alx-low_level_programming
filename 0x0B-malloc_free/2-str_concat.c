@@ -19,13 +19,16 @@ char *str_concat(char *s1, char *s2)
 	ptr_str = malloc(len1 + len2 + 1);
 	if (ptr_str == NULL)
 		return (NULL);
+	strcpy(ptr_str, s1);
+	strcat(ptr_str, s2);
+	/**
 	for (i = 0; *s1 != '\0'; i++)
 		ptr_str[i] = s1[i];
 	while (*s2 != '\0')
 	{
 		ptr_str[i] = *s2++;
 		i++;
-	}
-	ptr_str[i] = '\0';
+	}*/
+	ptr_str = '\0';
 	return (ptr_str);
 }
