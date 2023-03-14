@@ -19,19 +19,8 @@ char *str_concat(char *s1, char *s2)
 	ptr_str = malloc(len1 + len2 + 1);
 	if (ptr_str == NULL)
 		return (NULL);
-	if (s1 == NULL)
-	{
-		strcpy(ptr_str, s2);
-	}
-	if (s2 == NULL)
-	{
-		strcpy(ptr_str, s1);
-	}
-	if (s1 != NULL && s2 != NULL)
-	{
-		strcpy(ptr_str, s1);
-		strcat(ptr_str, s2);
-	}
+	strcpy(ptr_str, s1);
+	strcat(ptr_str, s2);
 	ptr_str[len1 + len2] = '\0';
 	return (ptr_str);
 }
