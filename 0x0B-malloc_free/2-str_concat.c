@@ -27,9 +27,9 @@ char *str_concat(char *s1, char *s2)
 	{
 		strcpy(ptr_str, s1);
 	}
-	else
+	if (s1 == NULL && s2 == NULL)
 	{
-		ptr_str = " ";
+		return (ptr_str)
 	}
 	if (s1 != NULL && s2 != NULL)
 	{
