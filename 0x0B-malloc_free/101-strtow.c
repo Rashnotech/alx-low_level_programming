@@ -22,12 +22,12 @@ char **strtow(char *str)
 		num_word++;
 		str++;
 	}
-	words = malloc(num_words + 1 * sizeof(char));
+	words = malloc((num_word + 1) * sizeof(char));
 	if (words == NULL)
 		return (NULL);
 	for (i = 0; *str; i++)
 	{
-		words[i] = malloc(num_words + 1 * sizeof(char));
+		words[i] = malloc((num_word + 1) * sizeof(char));
 		if (words[i] == NULL)
 		{
 			for (j = 0; j < i; j++)
