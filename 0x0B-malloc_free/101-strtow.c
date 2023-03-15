@@ -43,6 +43,6 @@ char **strtow(char *str)
 				words[i][j] = str[i];
 		}
 	}
-	words[num_words + 1] = NULL;
+	words[i + 1] = NULL;
 	return (words);
 }
