@@ -10,7 +10,7 @@
  */
 char **strtow(char *str)
 {
-	char **words, word;
+	char **words, *word;
 	int i, j, num_word, len;
 
 	num_word = 0;
@@ -25,12 +25,13 @@ char **strtow(char *str)
 		str++;
 	}
 	words = malloc((num_word + 1) * sizeof(char));
+	word = malloc((len + 1) * sizeof(char));
 	if (words == NULL)
 		return (NULL);
+	i = 0;
 	while (*str)
 	{
 		j = 0;
-		word[len + 1];
 		while (*str && *str != ' ')
 		{
 			word[j] = *str;
