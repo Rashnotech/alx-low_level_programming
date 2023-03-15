@@ -37,9 +37,9 @@ char **strtow(char *str)
 			free(words);
 			return (NULL);
 		}
-		if ((str[i] != ' ' || str[i] != '\t') && str[i - 1] != ' ')
+		if ((str[i] != ' ' || str[i] != '\t') && str[i - 1] == ' ')
 		{
-			for (j = i; *str; j++)
+			for (j = i; (str[j] != ' ' || str[j] != '\t') && str[j] != '\0'; j++)
 				words[i][j] = str[j];
 			words[i][j] = '\0';
 		}
