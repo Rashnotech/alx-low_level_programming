@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /**
  * strtow - convert a string into word
  * @str: a string literal
@@ -9,12 +10,13 @@
  */
 char **strtow(char *str)
 {
-	char **words;
-	int i, j, num_word;
+	char **words, word;
+	int i, j, num_word, len;
 
 	num_word = 0;
 	if (str == NULL || *str == ' ')
 		return (NULL);
+	len = strlen(str);
 	while (*str != '\0')
 	{
 		if (*str == ' ' || *str == '\t')
@@ -25,16 +27,35 @@ char **strtow(char *str)
 	words = malloc((num_word + 1) * sizeof(char));
 	if (words == NULL)
 		return (NULL);
-	for (i = 0; *str != '\0'; i++)
+	while (*str)
 	{
-		if ((str[i] != ' ' || str[i] != '\t') && str[i - 1] == ' ')
+		j = 0;
+		word[len + 1];
+		while (*str && *str != ' ')
 		{
-			for (j = 0; str[j] != '' || str[j] != '\t' && str[j] != '\0' ; j++)
+			word[j] = *str;
+			j++;
+			str++;
+		}
+		if (j > 0)
+		{
+			word[j] = '\0';
+			words[i] = malloc((j + 1) * sizeof(char));
+			if (words[i] == NULL)
 			{
-				words[i][j] = '\0';
+				for (j = 0; j < i; j++)
+					free(words[j]);
+				free(word);
+				return NULL;
 			}
+			strcpy(words[i],word);
+			i++;
+		}
+		else
+		{
+			str++;
 		}
 	}
-	words[i + 1] = NULL;
+	words[num_word] = NULL;
 	return (words);
 }
