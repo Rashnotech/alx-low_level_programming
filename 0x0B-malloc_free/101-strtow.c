@@ -39,7 +39,7 @@ char **strtow(char *str)
 		}
 		if ((str[i] != ' ' || str[i] != '\t') && str[i - 1] == ' ')
 		{
-			for (j = i; (str[j] != ' ' || str[j] != '\t') && str[j] != '\0'; j++)
+			for (j = i; str[j] != '\0'; j++)
 				words[i][j] = str[j];
 			words[i][j] = '\0';
 		}
