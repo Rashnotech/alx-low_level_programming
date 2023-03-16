@@ -7,4 +7,14 @@
  */
 int *array_range(int min, int max)
 {
+	int *range;
+
+	if (min > max)
+		return (NULL);
+	range = mallac(sizeof(int) * (min + max));
+	if (range == NULL)
+		return (NULL);
+	for (i = min; i <= max; i++)
+		range[i] = i;
+	return (range);
 }
