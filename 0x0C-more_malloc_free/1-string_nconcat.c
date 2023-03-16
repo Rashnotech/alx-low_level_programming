@@ -31,8 +31,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	}
 	while (n != 0 && *s2 != '\0')
 	{
-		parag[i] = *s2++;
-		i++;
+		parag[len + 1] = *s2++;
+		len++;
 		n--;
 	}
 	parag[i] = '\0';
