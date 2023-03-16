@@ -1,74 +1,45 @@
-#include <stdlib.h>
 #include "main.h"
-
+#include <stdlib.h>
+#include <string.h>
 /**
- * * count_word - helper function to count the number of words in a string
- * * @s: string to evaluate
- * *
- * * Return: number of words
- */
-int count_word(char *s)
-{
-	int flag, c, w;
-
-	flag = 0;
-	w = 0;
-	for (c = 0; s[c] != '\0'; c++)
-	{
-		if (s[c] == ' ')
-			flag = 0;
-		else
-			if (flag == 0)
-			{
-				flag = 1;
-				w++;
-			}
-	}
-
-	return (w);
-}
-
-/**
- * **strtow - splits a string into words
- * @str: string to split
+ * strtow - String literal to word
+ * @str: a string literal
  *
- * Return: pointer to an array of strings (Success)
- * or NULL (Error)
+ * Return: each words otherwise NULL
  */
 char **strtow(char *str)
 {
-	char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
+	char **words, *new_word;
+	int word_start, word_length, word_count, word_index, j, i;
 
-	while (*(str + len))
-		len++;
-	words = count_word(str);
-	if (words == 0)
+	if (str == NULL || *str == "")
 		return (NULL);
-	matrix = (char **) malloc(sizeof(char *) * (words + 1));
-	if (matrix == NULL)
-		return (NULL);
-	for (i = 0; i <= len; i++)
+	word_count = 0;
+	for (i = 0; str[i]; i++)
 	{
-		if (str[i] == ' ' || str[i] == '\0')
-		{
-			if (c)
-			{
-				end = i;
-				tmp = (char *) malloc(sizeof(char) * (c + 1));
-				if (tmp == NULL)
-					return (NULL);
-				while (start < end)
-					*tmp++ = str[start++];
-				*tmp = '\0';
-				matrix[k] = tmp - c;
-				k++;
-				c = 0;
-			}
-		}
-		else if (c++ == 0)
-			start = i;
+		if (!isspace(str[i]) && (i == 0 || isspace(str[i - 1])))
+			word_count++;
 	}
-	matrix[k] = NULL;
-	return (matrix);
+	words = malloc(sizeof(char *) * (word_count + 1));
+	if (words == NULL)
+		return (NULL);
+	word_index = 0;
+	for (i = 0; str[i]; i++)
+	{
+		if (isspace(str[i]))
+			continue;
+		word_start = i;
+		word_length = 0;
+		while (str[i] && !isspace(str[i]))
+		{
+			word_length++;
+			i++;
+		}
+		new_word = malloc(sizeof(char) * (word_length + 1));
+		memcpy(new_word, &str[word_start], word_length);
+		new_word[word_length] = '\0';
+		words[word_index++] = new_word;
+	}
+	words[word_index] = NULL;
+	return (words);
 }
