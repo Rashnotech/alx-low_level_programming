@@ -12,7 +12,7 @@ char **strtow(char *str)
 	char **words, *new_word;
 	int word_start, word_length, word_count, word_index, i;
 
-	if (!str || str == NULL)
+	if (!str)
 		return (NULL);
 	word_count = 0;
 	for (i = 0; str[i]; i++)
@@ -20,6 +20,8 @@ char **strtow(char *str)
 		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 			word_count++;
 	}
+	if (word_count == 0)
+		return (NULL);
 	words = malloc(sizeof(char *) * (word_count + 1));
 	if (words == NULL)
 		return (NULL);
