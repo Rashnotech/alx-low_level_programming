@@ -15,11 +15,11 @@ int *array_range(int min, int max)
 
 	if (min >= max)
 		return (NULL);
-	range = malloc(sizeof(int) * (max + 1));
+	range = malloc(sizeof(int) * (max - min + 1));
 	if (range == NULL)
 		return (NULL);
-	for (i = min; i <= max; i++)
-		range[i] = i;
+	for (i = 0; i <= max - min; i++)
+		range[i] = min + i;
 	range[i] = '\0';
 	return (range);
 }
