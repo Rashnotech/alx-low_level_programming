@@ -13,7 +13,7 @@ char **strtow(char *str)
 	int word_start, word_length, word_count, word_index, i, len;
 
 	len = strlen(str);
-	if (str == NULL || *str == ' ' && len < 1)
+	if (str == NULL || *str == ' ')
 		return (NULL);
 	word_count = 0;
 	for (i = 0; str[i]; i++)
