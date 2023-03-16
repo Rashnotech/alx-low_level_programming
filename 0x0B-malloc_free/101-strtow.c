@@ -10,14 +10,14 @@
 char **strtow(char *str)
 {
 	char **words, *new_word;
-	int word_start, word_length, word_count, word_index, j, i;
+	int word_start, word_length, word_count, word_index, i;
 
 	if (!str)
 		return (NULL);
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (!isspace(str[i]) && (i == 0 || isspace(str[i - 1])))
+		if (!(isspace(str[i])) && (i == 0 || isspace(str[i - 1])))
 			word_count++;
 	}
 	words = malloc(sizeof(char *) * (word_count + 1));
