@@ -22,7 +22,7 @@ char **strtow(char *str)
 	}
 	if (word_count == 0)
 		return (NULL);
-	words = malloc(sizeof(char *) * (word_count + 1));
+	words = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (words == NULL)
 		return (NULL);
 	word_index = 0;
@@ -37,7 +37,7 @@ char **strtow(char *str)
 			word_length++;
 			i++;
 		}
-		new_word = malloc(sizeof(char) * (word_length + 1));
+		new_word = (char *)malloc(sizeof(char) * (word_length + 1));
 		memcpy(new_word, &str[word_start], word_length);
 		new_word[word_length] = '\0';
 		words[word_index++] = new_word;
