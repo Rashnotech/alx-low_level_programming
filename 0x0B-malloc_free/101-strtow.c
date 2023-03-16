@@ -17,7 +17,7 @@ char **strtow(char *str)
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != "" && (i == 0 || str[i - 1] == ""))
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 			word_count++;
 	}
 	words = malloc(sizeof(char *) * (word_count + 1));
