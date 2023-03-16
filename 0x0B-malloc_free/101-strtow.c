@@ -26,7 +26,7 @@ char **strtow(char *str)
 	word_index = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (isspace(str[i]))
+		if (str[i] == ' ')
 			continue;
 		word_start = i;
 		word_length = 0;
