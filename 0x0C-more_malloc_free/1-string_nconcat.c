@@ -13,6 +13,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	int len1, i;
 	char *parag;
+
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
@@ -23,7 +24,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (parag == NULL)
 		return (NULL);
 	i = 0;
-	while(s1[i] != '\0')
+	while (s1[i] != '\0')
 	{
 		parag[i] = s1[i];
 		i++;
