@@ -10,9 +10,10 @@
 char **strtow(char *str)
 {
 	char **words, *new_word;
-	int word_start, word_length, word_count, word_index, i;
+	int word_start, word_length, word_count, word_index, i, len;
 
-	if (str == NULL || *str == ' ' || *str == '')
+	len = strlen(str);
+	if (str == NULL || *str == ' ' && len < 1)
 		return (NULL);
 	word_count = 0;
 	for (i = 0; str[i]; i++)
