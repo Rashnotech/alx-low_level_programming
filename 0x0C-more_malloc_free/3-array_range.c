@@ -7,11 +7,11 @@
  */
 int *array_range(int min, int max)
 {
-	int *range;
+	int *range, i;
 
 	if (min > max)
 		return (NULL);
-	range = mallac(sizeof(int) * (min + max));
+	range = malloc(sizeof(int) * (min + max));
 	if (range == NULL)
 		return (NULL);
 	for (i = min; i <= max; i++)
