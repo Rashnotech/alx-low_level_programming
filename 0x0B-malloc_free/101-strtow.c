@@ -26,7 +26,7 @@ char **strtow(char *str)
 	if (words == NULL)
 		return (NULL);
 	word_index = 0;
-	for (i = 0; str[i]; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] == ' ')
 			continue;
