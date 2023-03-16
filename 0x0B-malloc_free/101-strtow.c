@@ -17,7 +17,7 @@ char **strtow(char *str)
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ' || str[i] != '\t' && (str[i - 1] == ' '))
+		if (str[i] != ' ')
 			word_count++;
 	}
 	if (word_count == 0)
