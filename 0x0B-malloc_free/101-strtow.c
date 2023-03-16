@@ -17,7 +17,7 @@ char **strtow(char *str)
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ')
+		if (str[i] != ' ' && (str[i - 1] == ' '))
 			word_count++;
 	}
 	if (word_count == 0)
@@ -40,8 +40,8 @@ char **strtow(char *str)
 		new_word = malloc(sizeof(char) * (word_length + 1));
 		memcpy(new_word, &str[word_start], word_length);
 		new_word[word_length] = '\0';
-		words[word_index++] = new_word;
+		words[word_index] = new_word;
 	}
-	words[word_index] = NULL;
+	words[word_index++] = NULL;
 	return (words);
 }
