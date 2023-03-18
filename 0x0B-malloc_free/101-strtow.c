@@ -12,18 +12,18 @@ char **strtow(char *str)
 	char **words, *new_word;
 	int word_start, word_length, word_count, word_index, i;
 
-	if (!str)
+	if (!str || !*str)
 		return (NULL);
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ' && (str[i + 1] != ' '))
+		if (str[i] != ' ' && (str[i + 1] = '\0' || str[i + 1] == ' '))
 			word_count++;
 	}
-	if (word_count == 0)
+	if (!word_count)
 		return (NULL);
 	words = malloc(sizeof(char *) * (word_count + 1));
-	if (words == NULL)
+	if (!words)
 		return (NULL);
 	word_index = 0;
 	for (i = 0; str[i] != '\0'; i++)
@@ -39,11 +39,7 @@ char **strtow(char *str)
 		}
 		new_word = malloc(sizeof(char) * (word_length + 1));
 		if (new_word == NULL)
-		{
-			free(new_word);
-			free(words);
 			return (NULL);
-		}
 		memcpy(new_word, &str[word_start], word_length);
 		new_word[word_length] = '\0';
 		words[word_index++] = new_word;
