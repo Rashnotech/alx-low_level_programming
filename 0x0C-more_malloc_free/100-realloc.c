@@ -7,11 +7,15 @@
  * @ptr: a block of memory
  * @old_size: previous memory allocated
  * @new_size: New memory to be allocated
+ *
+ * Return: reallocated memory or old_memory otherwise NULL
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *new_mem;
 
+	if (new_size == ptr)
+		return (ptr);
 	if (new_size == 0)
 	{
 		free(ptr);
