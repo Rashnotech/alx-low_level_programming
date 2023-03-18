@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	int num1, num2, len1, len2;
 	int *mem;
 
-	if ((!isdigit(*argv[1]) || !isdigit(*argv[2])) || argc != 3)
+	if (!isdigit(*argv[1]) || !isdigit(*argv[2]) || argc != 3)
 	{
 		printf("Error\n");
 		exit(98);
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	*mem = num1 * num2;
-	
 	printf("%d\n", *mem);
+	free(mem);
 	return (0);
 }
