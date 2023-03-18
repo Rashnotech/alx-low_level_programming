@@ -17,7 +17,7 @@ char **strtow(char *str)
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ' && (str[i + 1] == '\0' || str[i + 1] == ' '))
+		if (str[i] != ' ' && (i == 0 || str[i + 1] == ' '))
 			word_count++;
 	}
 	if (!word_count)
@@ -32,7 +32,7 @@ char **strtow(char *str)
 			continue;
 		word_start = i;
 		word_length = 0;
-		while (str[i] && str[i] != ' ')
+		while (str[i] && str[i] != ' ' && i != 0)
 		{
 			word_length++;
 			i++;
