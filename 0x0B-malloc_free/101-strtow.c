@@ -17,12 +17,12 @@ char **strtow(char *str)
 	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ' && (str[i - 1] == ' '))
+		if (str[i] != ' ' && (str[i + 1] != ' '))
 			word_count++;
 	}
 	if (word_count == 0)
 		return (NULL);
-	words = malloc(sizeof(char *) * (word_count + 1));
+	words = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (words == NULL)
 		return (NULL);
 	word_index = 0;
@@ -32,7 +32,7 @@ char **strtow(char *str)
 			continue;
 		word_start = i;
 		word_length = 0;
-		while (str[i] && str[i] != ' ' && str[0] != ' ')
+		while (str[i] && str[i] != ' ')
 		{
 			word_length++;
 			i++;
