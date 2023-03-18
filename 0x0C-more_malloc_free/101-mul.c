@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
 	}
 	num1 = strtol(argv[1], NULL, 10);
 	num2 = strtol(argv[2], NULL, 10);
-	len1 = snprintf(NULL, 0, "%d", num1);
-	len2 = snprintf(NULL, 0, "%d", num2);
+	len1 = strlen(argv[1]);
+	len2 = strlen(argv[2]);
 	mem = malloc(sizeof(int) * (len1 + len2 + 1));
 	if (mem == NULL)
 	{
