@@ -39,8 +39,8 @@ char **strtow(char *str)
 		}
 		new_word = malloc(sizeof(char) * (word_length + 1));
 		memcpy(new_word, &str[word_start], word_length);
-		new_word[word_length] = '\0';
-		words[word_index + 1] = new_word;
+		new_word[word_length + 1] = '\0';
+		words[word_index++] = new_word;
 	}
 	words[word_index] = NULL;
 	return (words);
