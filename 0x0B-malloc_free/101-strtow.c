@@ -46,6 +46,7 @@ char **strtow(char *str)
 			new_word[word_length] = '\0';
 			words[word_index++] = new_word;
 		}
+	}
 	words[word_index] = NULL;
 	return (words);
 }
