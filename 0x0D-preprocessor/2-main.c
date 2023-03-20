@@ -5,8 +5,8 @@
  *
  * Return: an integer value of 0 otherwise 1
  */
-int main()
+int main(void)
 {
 	printf("%s\n", __FILE__);
-	return 0;
+	return (0);
 }
