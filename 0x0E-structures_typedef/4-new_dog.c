@@ -30,7 +30,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (mem->owner == NULL)
 	{
 		free(mem);
-		free(mem->owner);
+		free(mem->name);
 		return (NULL);
 	}
 	strcpy(mem->name, name);
