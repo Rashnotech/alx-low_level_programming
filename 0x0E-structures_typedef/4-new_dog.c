@@ -3,7 +3,7 @@
 #include <string.h>
 #include "dog.h"
 /**
- * struct new_dog - Creating a new member struct
+ * new_dog - Creating a new member struct
  * @name : members name
  * @age: member age
  * @owner: member owner
@@ -16,15 +16,17 @@ dog_t *new_dog(char *name, float age, char *owner)
 	int len1, len2;
 
 	mem = malloc(sizeof(dog_t));
+	if (mem == NULL)
+		return (NULL);
 	len1 = strlen(name);
 	len2 = strlen(owner);
-	mem->name = malloc(sizeof(char) * len1 + 1);
+	mem->name = malloc(sizeof(char) * (len1 + 1));
 	if (mem->name == NULL)
 	{
 		free(mem);
 		return (NULL);
 	}
-	mem->owner = malloc(sizeof(char) * len2 + 1);
+	mem->owner = malloc(sizeof(char) * (len2 + 1));
 	if (mem->owner == NULL)
 	{
 		free(mem);
