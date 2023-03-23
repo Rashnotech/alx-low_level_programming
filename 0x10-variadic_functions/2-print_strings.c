@@ -9,12 +9,12 @@ void print_strings(const char *separator, const unsigned int n, ...)
 {
 	va_list arglist;
 	unsigned int i;
-	const char *str;
+	char *str;
 
 	va_start(arglist, n);
 	for (i = 0; i < n; i++)
 	{
-		str = va_arg(arglist, const char*);
+		str = va_arg(arglist, char*);
 		if (str == NULL)
 			printf("nil");
 		else
