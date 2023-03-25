@@ -15,7 +15,7 @@ char **strtow(char *str)
 	if (!str || !*str)
 		return (NULL);
 	word_count = 0;
-	for (i = 0; str[i]; i++)
+	for (i = 0; str[i] !=  '\0'; i++)
 	{
 		if (str[i] && str[i + 1] != ' ')
 			word_count++;
