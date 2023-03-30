@@ -3,8 +3,12 @@
 #include <stddef.h>
 /**
  * struct list - contain list of element
+ * @str: character pointer
+ * @len: length of the string
+ * @next: linked list
  */
-struct list{
+struct list
+{
 	char *str;
 	int len;
 	struct list *next;
