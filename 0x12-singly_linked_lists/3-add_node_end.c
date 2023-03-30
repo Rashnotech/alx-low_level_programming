@@ -3,7 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 /**
+ * add_node_end - adding to an existing linked list
+ * @head: node
+ * @str: string literal
  *
+ * Return: struct members in list or NULL
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
@@ -22,5 +26,5 @@ list_t *add_node_end(list_t **head, const char *str)
 		*head = xs_node;
 	else
 		last_node->next = xs_node;
-	return xs_node;
+	return (xs_node);
 }
