@@ -5,7 +5,7 @@
 /**
  * list_len - find the number of element in a list
  * @h: struct pointer
- * 
+ *
  * Return: number of length size_t type
  */
 size_t list_len(const list_t *h)
