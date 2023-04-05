@@ -1,4 +1,5 @@
 #include "lists.h"
+int sizeoflist(listint_t *head);
 /**
  * delete_nodeint_at_index - delete node at index specified
  * @head: double pointer to linked list
@@ -20,15 +21,36 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		free(temp);
 		return (1);
 	}
+	counter = sizeoflist(*head);
+	if (index > counter)
+		return (-1);
 	while (counter < index - 1)
 	{
 		temp = temp->next;
 		counter++;
 	}
-	if (temp == NULL || temp->next == NULL)
-		return (-1);
 	next_node = temp->next;
 	temp->next = next_node->next;
 	free(next_node);
 	return (1);
+}
+
+/**
+ * sizeoflist - get the size of the linked list
+ * @head: a struct pointer
+ *
+ * Return: an integer value of num of element in list otherwise NULL
+ */
+int sizeoflist(listint_t *head)
+{
+	unsigned int counter = 0;
+
+	if (!head)
+		return (-1);
+	while (head != NULL)
+	{
+		head = head->next;
+		counter++;
+	}
+	return (counter);
 }
