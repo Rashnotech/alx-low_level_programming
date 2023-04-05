@@ -10,7 +10,7 @@ int sizeoflist(listint_t *head);
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
 	listint_t *temp, *next_node;
-	unsigned int counter = 0;
+	unsigned int counter;
 
 	if (*head == NULL)
 		return (-1);
@@ -24,6 +24,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		free(temp);
 		return (1);
 	}
+	counter = 0;
 	while (counter < index - 1)
 	{
 		temp = temp->next;
