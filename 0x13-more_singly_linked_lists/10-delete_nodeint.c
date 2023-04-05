@@ -21,9 +21,11 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		free(temp);
 		return (1);
 	}
-	counter = sizeoflist(*head);
-	if (index > counter)
-		return (-1);
+	/**
+	 * counter = sizeoflist(*head);
+	 * if (index > counter)
+	 * return (-1);
+	 */
 	while (counter < index - 1)
 	{
 		temp = temp->next;
