@@ -1,5 +1,4 @@
 #include "lists.h"
-#include <stdbool.h>
 /**
  * print_listint_safe - Print node list in safe
  * @head: a pointer to struct
@@ -22,7 +21,6 @@ size_t print_listint_safe(const listint_t *head)
 		}
 		else
 		{
-			counter++;
 			head = head->next;
 			printf("-> [%p] %d\n", (void *)head, head->n);
 			break;
