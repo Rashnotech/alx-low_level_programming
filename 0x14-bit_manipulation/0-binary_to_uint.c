@@ -1,5 +1,4 @@
-#include "lists.h"
-#include <string.h>
+#include "main.h"
 /**
  * binary_to_uint - convert binary to unsigned int
  * @b: string literal
@@ -10,6 +9,8 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int bit, len, index = 0, result = 0;
 
+	if (!b)
+		return (NULL);
 	len = strlen(b);
 	--len;
 	while (b[index] != '\0')
