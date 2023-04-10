@@ -1,7 +1,5 @@
 #include "main.h"
 #include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
 /**
  * read_textfile - a function to read text file into program
  * @filename: filename of file to read
