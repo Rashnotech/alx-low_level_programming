@@ -31,10 +31,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd);
 		return (0);
 	}
-	wd = write(STDOUT_FILENO, buff, letters);
+	wd = write(STDOUT_FILENO, buff, rd);
 	if (wd == -1)
 		return (0);
 	free(buff);
 	close(fd);
-	return (rd);
+	return (wd);
 }
