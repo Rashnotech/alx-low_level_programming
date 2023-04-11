@@ -1,4 +1,4 @@
-void print_error(int code, char *message, char *filename, int exit_status);
+void print_error(char *message, char *filename, int exit_status);
 int copyfrom_to_destin(char *file_from, char *file_to);
 #include <unistd.h>
 #include <stdio.h>
@@ -41,27 +41,30 @@ int copyfrom_to_destin(char *file_from, char *file_to)
 	char *buff;
 
 	fd = open(file_from, O_RDONLY);
-	ft = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+	if (fd == -1 || file_from == NULL)
+		print_error("Error: Error: Can't read from file %s\n", file_from, 98);
+	else
+	{
+		ft = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (fd == -1)
-		print_error(fd, "Error: Error: Can't read from file %s\n", file_from, 98);
-	if (ft == -1)
-		print_error(ft, "Error: Can't write to %s\n", file_to, 99);
-	buff = malloc(sizeof(char) * strlen(file_from));
-	if (buff == NULL)
-	{
-		close(fd);
-		close(ft);
-		return (-1);
-	}
-	read_status = read(fd, buff, 1024);
-	write_status = write(ft, buff, read_status);
-	if (write_status == -1 || read_status == -1)
-	{
-		free(buff);
-		close(fd);
-		close(ft);
-		return (-1);
+		if (ft == -1)
+			print_error("Error: Can't write to %s\n", file_to, 99);
+		buff = malloc(sizeof(char) * strlen(file_from));
+		if (buff == NULL)
+		{
+			close(fd);
+			close(ft);
+			return (-1);
+		}
+		read_status = read(fd, buff, 1024);
+		write_status = write(ft, buff, read_status);
+		if (write_status == -1 || read_status == -1)
+		{
+			free(buff);
+			close(fd);
+			close(ft);
+			return (-1);
+		}
 	}
 	free(buff);
 	FD_VALUE = close(fd);
@@ -87,8 +90,8 @@ int copyfrom_to_destin(char *file_from, char *file_to)
  * @filename: failed operation file
  * @exit_status: exit status code
  */
-void print_error(int code, char *message, char *filename, int exit_status)
+void print_error(char *message, char *filename, int exit_status)
 {
-	dprintf(code, message, filename);
+	dprintf(STDERR_FILENO, message, filename);
 	exit(exit_status);
 }
