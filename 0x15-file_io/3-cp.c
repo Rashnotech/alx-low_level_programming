@@ -64,12 +64,14 @@ int copyfrom_to_destin(char *file_from, char *file_to)
 		return (-1);
 	}
 	free(buff);
-	if ((FD_VALUE = (close(fd))) == -1)
+	FD_VALUE = close(fd);
+	if (FD_VALUE == -1)
 	{
 		dprintf(FD_VALUE, "Error: Can't close fd %d\n", FD_VALUE);
 		exit(100);
 	}
-	if ((FD_VALUE = (close(ft))) == -1)
+	FD_VALUE = close(ft);
+	if (FD_VALUE == -1)
 	{
 		dprintf(FD_VALUE, "Error: Can't close fd %d\n", FD_VALUE);
 		exit(100);
