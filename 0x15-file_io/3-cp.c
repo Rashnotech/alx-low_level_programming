@@ -41,28 +41,28 @@ int copyfrom_to_destin(char *file_from, char *file_to)
 	ssize_t write_status, read_status;
 	char *buff;
 
-	fd = open(file_from, O_RDONLY);
-	if (fd == -1 || file_from == NULL)
+	if (file_from == NULL || access(file_from, F_OK) != 0)
 		print_error("Error: Can't read from file %s\n", file_from, 98);
-	ft = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+	fd = open(file_from, O_RDONLY);
+	if (fd == -1)
+		print_error("Error: Can't read from file %s\n", file_from, 98);
+	if (access(file_to, F_OK) == 0)
+		ft = open(file_to, O_WRONLY | O_APPEND);
+	else
+		ft = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (ft == -1)
 		print_error("Error: Can't write to %s\n", file_to, 99);
 	buff = malloc(sizeof(char) * 1024);
 	if (buff == NULL)
 		print_error("Error: Can't write to %s\n", file_to, 99);
-	while (read_status > 0)
+	read_status = read(fd, buff, 1024);
+	write_status = write(ft, buff, read_status);
+	if (write_status == -1 || read_status == -1)
 	{
-		read_status = read(fd, buff, 1024);
-		write_status = write(ft, buff, read_status);
-		if (write_status == -1 || read_status == -1)
-		{
-			free(buff);
-			close(fd);
-			close(ft);
-		}
-		read_status = read(fd, buff, 1024);
-		ft = open(file_to, O_WRONLY | O_APPEND);
+		free(buff);
+		close(fd);
+		close(ft);
 	}
 	free(buff);
 	closefile(fd);
