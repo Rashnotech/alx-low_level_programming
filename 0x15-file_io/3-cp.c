@@ -1,4 +1,5 @@
 void print_error(char *message, char *filename, int exit_status);
+void closefile(int fd);
 int copyfrom_to_destin(char *file_from, char *file_to);
 #include <unistd.h>
 #include <stdio.h>
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
  */
 int copyfrom_to_destin(char *file_from, char *file_to)
 {
-	int fd, ft, FD_VALUE;
+	int fd, ft;
 	ssize_t write_status, read_status;
 	char *buff;
 
@@ -52,6 +53,7 @@ int copyfrom_to_destin(char *file_from, char *file_to)
 		buff = malloc(sizeof(char) * strlen(file_from));
 		if (buff == NULL)
 		{
+			print_error("Error: Can't write to %s\n", file_to, 99);
 			close(fd);
 			close(ft);
 			return (-1);
@@ -67,25 +69,13 @@ int copyfrom_to_destin(char *file_from, char *file_to)
 		}
 	}
 	free(buff);
-	FD_VALUE = close(fd);
-	if (FD_VALUE == -1)
-	{
-		dprintf(FD_VALUE, "Error: Can't close fd %d\n", FD_VALUE);
-		exit(100);
-	}
-	FD_VALUE = close(ft);
-	if (FD_VALUE == -1)
-	{
-		dprintf(FD_VALUE, "Error: Can't close fd %d\n", FD_VALUE);
-		exit(100);
-	}
-
+	closefile(fd);
+	closefile(ft);
 	return (0);
 }
 
 /**
  * print_error - Print error codes that ocurred
- * @code: file descriptor code
  * @message: error message to print on screen
  * @filename: failed operation file
  * @exit_status: exit status code
@@ -94,4 +84,20 @@ void print_error(char *message, char *filename, int exit_status)
 {
 	dprintf(STDERR_FILENO, message, filename);
 	exit(exit_status);
+}
+
+/**
+ * closefile - close opened file
+ * @fd: file descriptor
+ */
+void closefile(int fd)
+{
+	int retval;
+
+	retval = close(fd);
+	if (retval == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
 }
