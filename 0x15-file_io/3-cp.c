@@ -38,11 +38,8 @@ int copy_from_file(char *file_from, char *file_to)
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 		print_error("Error: Can't read from file %s\n", file_from, 98);
-	if (access(file_to, F_OK) == 1)
-		fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	else
-		fd_to = open(file_to, O_WRONLY | O_APPEND);
 	if (fd_to == -1)
 		print_error("Error: Can't write to %s\n", file_to, 99);
 	buff = malloc(sizeof(char) * 1024);
@@ -83,7 +80,7 @@ void print_error(char *message, char *filename, int exit_status)
 }
 
 /**
- * closefile - close opened file
+ * close_file - close opened file
  * @fd: file descriptor
  */
 void close_file(int fd)
