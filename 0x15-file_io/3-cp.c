@@ -36,31 +36,27 @@ int copy_from_file(char *file_from, char *file_to)
 	file_check(file_from);
 	file_check(file_to);
 	fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1)
-		print_error("Error: Can't read from file %s\n", file_from, 98);
 	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (fd_to == -1)
-		print_error("Error: Can't write to %s\n", file_to, 99);
 	buff = malloc(sizeof(char) * 1024);
 	if (buff == NULL)
 		print_error("Error: Can't write to %s\n", file_to, 99);
 	while ((bytes_read = read(fd_from, buff, 1024)) > 0)
 	{
-		bytes_write = write(fd_to, buff, bytes_read);
-		if (bytes_write != bytes_read)
+		if (fd_from == -1 || bytes_read == -1)
 		{
+			free(buff);
+			print_error("Error: Can't read from file %s\n", file_from, 98);
+		}
+		bytes_write = write(fd_to, buff, bytes_read);
+		if (fd_to == -1 || bytes_write == -1)
+		{
+			print_error("Error: Can't write to %s\n", file_to, 99);
 			free(buff);
 			close_file(fd_from);
 			close_file(fd_to);
 		}
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
-	}
-	if (bytes_read == -1 || bytes_write == -1)
-	{
-		free(buff);
-		close_file(fd_from);
-		close_file(fd_to);
 	}
 	free(buff);
 	close_file(fd_from);
