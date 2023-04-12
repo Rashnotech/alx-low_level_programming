@@ -1,13 +1,5 @@
-void print_error(char *message, char *filename, int exit_status);
-void closefile(int fd);
-int copyfrom_to_destin(char *file_from, char *file_to);
+#include "main.h"
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/types.h>
 /**
  * main - copy content of a file to another file
  * @argc: argument counter
@@ -24,49 +16,55 @@ int main(int argc, char *argv[])
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	retval = copyfrom_to_destin(argv[1], argv[2]);
+	retval = copy_from_file(argv[1], argv[2]);
 	return (retval);
 }
 
 /**
- * copyfrom_to_destin - copy from file to another file
+ * copy_from_file - copy from file to another file
  * @file_from: file to copy from
  * @file_to: file to copy to
  *
  * Return: an integer value of 0 otherwise -1
  */
-int copyfrom_to_destin(char *file_from, char *file_to)
+int copy_from_file(char *file_from, char *file_to)
 {
-	int fd, ft;
-	ssize_t write_status, read_status;
+	int fd_from, fd_to;
+	ssize_t bytes_read, bytes_write;
 	char *buff;
 
-	if (file_from == NULL || access(file_from, F_OK) != 0)
+	file_check(file_from);
+	file_check(file_to);
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
 		print_error("Error: Can't read from file %s\n", file_from, 98);
-	fd = open(file_from, O_RDONLY);
-	if (fd == -1)
-		print_error("Error: Can't read from file %s\n", file_from, 98);
-	if (access(file_to, F_OK) == 0)
-		ft = open(file_to, O_WRONLY | O_APPEND);
-	else
-		ft = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (ft == -1)
+	if (fd_to == -1)
 		print_error("Error: Can't write to %s\n", file_to, 99);
 	buff = malloc(sizeof(char) * 1024);
 	if (buff == NULL)
 		print_error("Error: Can't write to %s\n", file_to, 99);
-	read_status = read(fd, buff, 1024);
-	write_status = write(ft, buff, read_status);
-	if (write_status == -1 || read_status == -1)
+	bytes_read = read(fd_from, buff, 1024);
+	while (bytes_read > 0)
+	{
+		bytes_write = write(fd_to, buff, bytes_read);
+		if (bytes_write != bytes_read)
+		{
+			free(buff);
+			close_file(fd_from);
+			close_file(fd_to);
+		}
+	}
+	if (bytes_read == -1 || bytes_write == -1)
 	{
 		free(buff);
-		close(fd);
-		close(ft);
+		close_file(fd_from);
+		close_file(fd_to);
 	}
 	free(buff);
-	closefile(fd);
-	closefile(ft);
+	close_file(fd_from);
+	close_file(fd_to);
 	return (0);
 }
 
@@ -86,7 +84,7 @@ void print_error(char *message, char *filename, int exit_status)
  * closefile - close opened file
  * @fd: file descriptor
  */
-void closefile(int fd)
+void close_file(int fd)
 {
 	int retval;
 
@@ -96,4 +94,14 @@ void closefile(int fd)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
+}
+
+/**
+ * file_check - check if file is NULL
+ * @file: file to check
+ */
+void file_check(char *file)
+{
+	if (file == NULL)
+		print_error("Error: Can't read from file %s\n", file, 98);
 }
