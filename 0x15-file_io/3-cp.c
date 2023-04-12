@@ -54,6 +54,7 @@ int copy_from_file(char *file_from, char *file_to)
 			close_file(fd_from);
 			close_file(fd_to);
 		}
+		fd_to = open(file_to, O_WRONLY | O_APPEND);
 	}
 	if (bytes_read == -1 || bytes_write == -1)
 	{
@@ -90,7 +91,7 @@ void close_file(int fd)
 	retval = close(fd);
 	if (retval == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(2, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
