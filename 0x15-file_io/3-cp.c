@@ -1,5 +1,6 @@
 #include "main.h"
 #include <unistd.h>
+#include <string.h>
 /**
  * main - copy content of a file to another file
  * @argc: argument counter
@@ -38,7 +39,7 @@ int copy_from_file(char *file_from, char *file_to)
 	fd_from = open(file_from, O_RDONLY);
 	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	buff = malloc(sizeof(char) * 1024);
+	buff = malloc(sizeof(char) * strlen(file_from));
 	if (buff == NULL)
 		print_error("Error: Can't write to %s\n", file_to, 99);
 	bytes_read = read(fd_from, buff, 1024);
