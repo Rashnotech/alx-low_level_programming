@@ -52,10 +52,9 @@ int copy_from_file(char *file_from, char *file_to)
 		bytes_write = write(fd_to, buff, bytes_read);
 		if (fd_to == -1 || bytes_write == -1)
 		{
-			print_error("Error: Can't write to %s\n", file_to, 99);
 			free(buff);
-			close_file(fd_from);
-			close_file(fd_to);
+			dprintf(STDERR_FILENO,"Error: Can't write to %s\n", file_to);
+			exit(99);
 		}
 		bytes_read = read(fd_from, buff, 1024);
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
@@ -89,7 +88,7 @@ void close_file(int fd)
 	retval = close(fd);
 	if (retval == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
