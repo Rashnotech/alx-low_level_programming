@@ -52,8 +52,8 @@ int copy_from_file(char *file_from, char *file_to)
 		bytes_write = write(fd_to, buff, bytes_read);
 		if (fd_to == -1 || bytes_write == -1)
 		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			free(buff);
-			dprintf(STDERR_FILENO,"Error: Can't write to %s\n", file_to);
 			exit(99);
 		}
 		bytes_read = read(fd_from, buff, 1024);
