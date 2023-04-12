@@ -41,7 +41,8 @@ int copy_from_file(char *file_from, char *file_to)
 	buff = malloc(sizeof(char) * 1024);
 	if (buff == NULL)
 		print_error("Error: Can't write to %s\n", file_to, 99);
-	while ((bytes_read = read(fd_from, buff, 1024)) > 0)
+	bytes_read = read(fd_from, buff, 1024);
+	while (bytes_read > 0)
 	{
 		if (fd_from == -1 || bytes_read == -1)
 		{
@@ -56,6 +57,7 @@ int copy_from_file(char *file_from, char *file_to)
 			close_file(fd_from);
 			close_file(fd_to);
 		}
+		bytes_read = read(fd_from, buff, 1024);
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
 	}
 	free(buff);
