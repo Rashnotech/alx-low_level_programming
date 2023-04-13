@@ -85,9 +85,12 @@ void close_file(int fd)
 {
 	int retval;
 
-	retval = close(fd);
+	retval = close(fd);	
 	if (retval == -1)
-		print_error("Error: Can't close fd %d\n", fd, 100);
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
 }
 
 /**
