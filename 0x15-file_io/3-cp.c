@@ -40,19 +40,19 @@ int copy_from_file(char *file_from, char *file_to)
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	buff = malloc(sizeof(char) * 1024);
 	if (buff == NULL)
-		print_error("Error: Can't write to %s\n", file_to, 99);
+		print_error("Can't write to %s\n", file_to, 99);
 	bytes_read = read(fd_from, buff, 1024);
 	while (bytes_read > 0)
 	{
 		if (fd_from == -1 || bytes_read == -1)
 		{
 			free(buff);
-			print_error("Error: Can't read from file %s\n", file_from, 98);
+			print_error("Can't read from file %s\n", file_from, 98);
 		}
 		bytes_write = write(fd_to, buff, bytes_read);
 		if (fd_to == -1 || bytes_write == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			dprintf(STDERR_FILENO, "Can't write to %s\n", file_to);
 			free(buff);
 			exit(99);
 		}
@@ -88,7 +88,7 @@ void close_file(int fd)
 	retval = close(fd);	
 	if (retval == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -100,5 +100,5 @@ void close_file(int fd)
 void file_check(char *file)
 {
 	if (file == NULL)
-		print_error("Error: Can't read from file %s\n", file, 98);
+		print_error("Can't read from file %s\n", file, 98);
 }
