@@ -5,9 +5,12 @@
 #include <unistd.h>
 #include <elf.h>
 /**
+ * main - display elf header
+ * @argc: argument counter
+ * @argv: argument vector
  *
+ * Return: an integer value of 0 otherwise 1
  */
-void display_elf_header(Elf64_Ehdr *elf_header);
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -37,19 +40,27 @@ int main(int argc, char *argv[])
 		fclose(file);
 		exit(98);
 	}
-	display_elf_header(&elf_header);
 	fclose(file);
 	return (0);
 }
+
+/**
+ * display_elf_header - display elf header
+ * @elf_header: an elf pointer
+ */
 void display_elf_header(Elf64_Ehdr *elf_header)
 {
 	int i;
+
 	printf("ELF Header:\n");
 	printf("  Magic:	");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf("%02x\n", elf_header->e_ident[i]);
-	printf("  Class: 		%s\n", elf_header->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
-	printf("  Data: %s\n", elf_header->e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian": "2's complement, big endian");
+	printf("  Class:		%s\n",
+			elf_header->e_ident[EI_CLASS] == ELFCLASS64 ?
+			"ELF64" : "ELF32");
+	printf("  Data: %s\n", elf_header->e_ident[EI_DATA] == ELFDATA2LSB ?
+			"2's complement, little endian" : "2's complement, big endian");
 	printf("  Version: %d\n", elf_header->e_ident[EI_VERSION]);
 	printf("  OS/ABI Version:		%d\n", elf_header->e_ident[EI_OSABI]);
 	printf("  ABI Version:			%d\n", elf_header->e_ident[EI_ABIVERSION]);
