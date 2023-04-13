@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		dprintf(STDERR_FILENO, "Usage: elf_head elf_filenamen\n");
+		dprintf(STDERR_FILENO, "Usage: elf_head elf_filename\n");
 		exit(97);
 	}
 	file = fopen(argv[1], "rb");
