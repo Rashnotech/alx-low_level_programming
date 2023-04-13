@@ -43,12 +43,37 @@ int main(int argc, char *argv[])
 }
 void display_elf_header(Elf64_Ehdr *elf_header)
 {
+	int i;
 	printf("ELF Header:\n");
-	printf("Magic: %x\n", elf_header->e_ident[EI_MAG2]);
-	printf("Class: %d\n", elf_header->e_ident[EI_CLASS]);
-	printf("Data: %d\n", elf_header->e_ident[EI_DATA]);
-	printf("Version: %u\n", elf_header->e_version);
-	printf("ABI Version");
-	printf("Type: %u\n", elf_header->e_type);
-	printf("Entry point address: 0x%lx\n", elf_header->e_entry);
+	printf("  Magic:	");
+	for (i = 0; i < EI_NIDENT; i++)
+		printf("%02x\n", elf_header->e_ident[i]);
+	printf("  Class: 		%s\n", elf_header->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
+	printf("  Data: %s\n", elf_header->e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian": "2's complement, big endian");
+	printf("  Version: %d\n", elf_header->e_ident[EI_VERSION]);
+	printf("  OS/ABI Version:		%d\n", elf_header->e_ident[EI_OSABI]);
+	printf("  ABI Version:			%d\n", elf_header->e_ident[EI_ABIVERSION]);
+	printf("  Type:				");
+	switch (elf_header->e_type)
+	{
+		case ET_NONE:
+			printf("NONE (No file type)\n");
+			break;
+		case ET_REL:
+			printf("REL (Relocatable file)\n");
+			break;
+		case ET_EXEC:
+			printf("EXEC (Executable file)\n");
+			break;
+		case ET_DYN:
+			printf("DYN (Shared object file)\n");
+			break;
+		case ET_CORE:
+			printf("CORE (Core file)\n");
+			break;
+		default:
+			printf("<unknown>\n");
+			break;
+	}
+	printf("  Entry point address:		0x%lx\n", elf_header->e_entry);
 }
