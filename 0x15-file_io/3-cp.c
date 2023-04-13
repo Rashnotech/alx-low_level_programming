@@ -53,6 +53,8 @@ int copy_from_file(char *file_from, char *file_to)
 		if (fd_to == -1 || bytes_write == -1)
 		{
 			free(buff);
+			close(fd_to);
+			close(fd_from);
 			print_error("Error: Can't write to %s\n", file_to, 99);
 		}
 		bytes_read = read(fd_from, buff, 1024);
