@@ -47,27 +47,16 @@ int copy_from_file(char *file_from, char *file_to)
 		if (fd_from == -1 || bytes_read == -1)
 		{
 			free(buff);
-			close(fd_to);
-			close(fd_from);
 			print_error("Error: Can't read from file %s\n", file_from, 98);
 		}
 		bytes_write = write(fd_to, buff, bytes_read);
 		if (fd_to == -1 || bytes_write == -1)
 		{
 			free(buff);
-			close(fd_to);
-			close(fd_from);
 			print_error("Error: Can't write to %s\n", file_to, 99);
 		}
 		bytes_read = read(fd_from, buff, 1024);
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
-	}
-	if (bytes_read == 0 && bytes_write == -1)
-	{
-		free(buff);
-		close(fd_to);
-		close(fd_from);
-		print_error("Error: Can't write to %s\n", file_to, 99);
 	}
 	free(buff);
 	close_file(fd_from);
