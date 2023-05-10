@@ -9,7 +9,10 @@
 int main(int argc, char *argv[])
 {
 	if (argc != 3)
-		print_error("Usage: cp file_from file_to", 97, NULL);
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 	copy_to_file(argv);
 	return (0);
 }
