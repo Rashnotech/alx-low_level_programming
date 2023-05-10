@@ -67,9 +67,9 @@ void copy_to_file(char **arr)
 void checkfile(int file_from, int file_to, char **arr)
 {
 	if (file_from == -1)
-		print_error("Error: Can't read from file %s", 98, arr[1]);
+		print_error("Error: Can't read from file ", 98, arr[1]);
 	if (file_to == -1)
-		print_error("Error: Can't write to %s", 99, arr[2]);
+		print_error("Error: Can't write to ", 99, arr[2]);
 }
 
 /**
