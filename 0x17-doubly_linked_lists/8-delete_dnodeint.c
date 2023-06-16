@@ -1,7 +1,9 @@
 #include "lists.h"
 /**
- * delete_dnodeint_at_index - a function that delete a node list at a specified index
+ * delete_dnodeint_at_index - a function that
+ * delete a node list at a specified index
  * @index: specific node index to be remove from list
+ * @head: a struct node pointer
  * Return: an integer 1 if deletion succeeded otherwise -1 for failed
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
@@ -15,7 +17,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		return (-1);
 	if (index == 0)
 	{	temp = *head;
-		*head= (*head)->next;
+		*head = (*head)->next;
 		free(temp);
 		temp = NULL;
 		(*head)->prev = NULL;
