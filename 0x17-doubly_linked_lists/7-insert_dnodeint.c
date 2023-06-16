@@ -27,7 +27,7 @@ int get_node_size(dlistint_t *head)
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *new_node, *xx_next;
+	dlistint_t *new_node, *xx_next, *temp;
 	unsigned int counter = 1, len;
 
 	xx_next = *h;
@@ -51,10 +51,11 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 			if (new_node)
 			{
 				new_node->n = n;
-				new_node->next = xx_next->next;
-				new_node->prev = xx_next;
-				xx_next->next->prev = new_node;
+				temp = xx_next->next;
 				xx_next->next = new_node;
+				temp->prev = new_node;
+				new_node->next = temp;
+				new_node->prev = xx_next;
 			}
 		}
 	}
