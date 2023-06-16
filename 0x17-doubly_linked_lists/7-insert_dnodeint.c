@@ -38,10 +38,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (idx > len)
 		return (NULL);
 	if (idx == 0)
-		return (add_dnodeint(h, n));
-	if (idx == len)
-		return (add_dnodeint_end(h, n));
-	if (idx != (len - 1))
+		add_dnodeint(h, n);
+	else if (idx == len)
+		add_dnodeint_end(h, n);
+	else
 	{
 		new_node->n = n;
 		new_node->next = NULL;
