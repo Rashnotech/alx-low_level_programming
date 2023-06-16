@@ -6,18 +6,24 @@
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	int len, counter = 1;
+	unsigned int len, counter = 1;
 	dlistint_t *temp, *prev = NULL;
 
 	temp = *head;
 	len = get_node_size(*head);
 	if (index > len || head == NULL)
 		return (-1);
-	if (index == 0)
+	if (index == 0 && len != 0)
 	{
 		*head = (*head)->next;
-		free((*head)->prev);
+		free(temp);
+		temp = NULL;
 		(*head)->prev = NULL;
+	}
+	else if (len == 1)
+	{
+		free(temp);
+		temp = NULL;
 	}
 	else
 	{
@@ -33,11 +39,35 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			free(temp);
 			temp = NULL;
 		}
-		prev = temp->prev;
-		prev->next = temp->next;
-		temp->next->prev = prev;
-		free(temp);
-		temp = NULL;
+		else
+		{
+			prev = temp->prev;
+			prev->next = temp->next;
+			temp->next->prev = prev;
+			free(temp);
+			temp = NULL;
+		}
 	}
 	return (1);
 }
+
+
+/**
+ * get_node_size - Get the size of a struct node
+ * @head: struct node pointer of list
+ * Return: an integer of node size
+ */
+int get_node_size(dlistint_t *head)
+{
+	dlistint_t *temp;
+	int counter = 0;
+
+	temp = head;
+	while (temp && temp->next)
+	{
+		counter++;
+		temp = temp->next;
+	}
+	return (counter);
+}
+
