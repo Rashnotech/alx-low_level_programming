@@ -13,7 +13,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 
 	temp = *head;
 	len = get_node_size(*head);
-	if (index > len || head == NULL)
+	if (index > len || *head == NULL || *head == NULL)
 		return (-1);
 	if (index == 0)
 	{	temp = *head;
