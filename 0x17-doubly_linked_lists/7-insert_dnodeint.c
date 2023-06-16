@@ -35,12 +35,12 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (!new_node || !h)
 		return (NULL);
 	len = get_node_size(*h);
-	if (idx > len || idx < counter)
+	if (idx > len)
 		return (NULL);
 	if (idx == 0)
-		add_dnodeint(h, n);
+		return (add_dnodeint(h, n));
 	else if (idx == len)
-		add_dnodeint_end(h, n);
+		return (add_dnodeint_end(h, n));
 	else
 	{
 		new_node->n = n;
