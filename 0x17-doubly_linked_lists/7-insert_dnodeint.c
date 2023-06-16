@@ -1,6 +1,6 @@
 #include "lists.h"
 /**
- * get_node_size - 
+ * get_node_size - Get the size of a struct node
  * @head: struct node pointer of list
  * Return: an integer of node size
  */
@@ -38,13 +38,16 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	len = get_node_size(*h);
-	if (idx == 0)
-	{
-		new_node->next = *h;
-		(*h)->prev = new_node;
-	}
 	if (idx > len)
 		return (NULL);
+	if (idx == 0)
+		add_dnodeint(h, n);
+	/**
+	 * new_node->next = *h;
+	 * (*h)->prev = new_node;
+	 */
+	else if (idx == len)
+		add_dnodeint_end(h, n);
 	else
 	{
 		while (counter < (idx - 1))
