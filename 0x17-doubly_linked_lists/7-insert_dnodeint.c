@@ -28,9 +28,12 @@ int get_node_size(dlistint_t *head)
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *new_node, *xx_next;
-	unsigned int counter = 1;
+	unsigned int counter = 1, len;
 
 	xx_next = *h;
+	len = get_node_size(*h);
+	if (idx > len)
+		return (NULL);
 	if (idx == 0)
 		add_dnodeint(h, n);
 	else
