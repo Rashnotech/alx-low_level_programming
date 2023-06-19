@@ -21,5 +21,9 @@ char *_strchr(char *s, char c);
 unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
-
+int sub(int, int);
+int add(int, int);
+int div(int, int);
+int mod(int, int);
+int mul(int, int);
 #endif
