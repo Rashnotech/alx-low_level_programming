@@ -12,7 +12,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *dict;
 	unsigned long int hash_key;
 
-	if (key == NULL || strlen(key) == 0)
+	if (ht == NULL || key == NULL || strlen(key) == 0)
 		return (0);
 	dict = malloc(sizeof(hash_node_t));
 	if (!dict)
