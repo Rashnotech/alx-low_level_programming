@@ -18,6 +18,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!dict)
 		return (0);
 	hash_key = key_index((unsigned char *)key, ht->size);
+	if (hash_key == 0)
+		return (0);
 	dict->key = strdup(key);
 	dict->value = strdup(value);
 	dict->next = NULL;
@@ -30,7 +32,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		else
 		{
 			dict->next = ht->array[hash_key]->next;
-			ht->array[hash_key]->next = dict->next;
+			ht->array[hash_key]->next = dict;
 		}
 	}
 	return (1);
