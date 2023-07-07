@@ -24,7 +24,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht->array[hash_key] == NULL)
 	{
 		ht->array[hash_key] = dict;
-		printf("%s\n", ht->array[hash_key]->key);
+		/**printf("%s\n", ht->array[hash_key]->key); */
 	}
 	else
 	{
