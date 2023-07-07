@@ -7,7 +7,7 @@ void hash_table_print(const hash_table_t *ht)
 {
 	unsigned long int i = 0, x = 1;
 
-	if (ht->size == 0)
+	if (ht->size == 0 || ht == NULL)
 	{
 		printf("{}\n");
 		return;
