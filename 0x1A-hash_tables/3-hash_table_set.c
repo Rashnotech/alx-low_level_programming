@@ -44,13 +44,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
  *
  * Return: an integer value of 0 otherwise 1
  */
-int space(char *str)
+int space(const char *str)
 {
 	int i = 0;
 
 	for (; str[i] != '\0'; i++)
 	{
-		if str[i] == ' ' || str[i] == '\t')
+		if (str[i] == ' ' || str[i] == '\t')
 			return (1);
 	}
 	return (0);
