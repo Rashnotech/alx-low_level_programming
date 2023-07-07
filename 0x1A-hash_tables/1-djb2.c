@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 /**
  * hash_djb2 - a function that implement a hashing algorithm (djb2)
- * str: an unsigned character pointer
+ * @str: an unsigned character pointer
  *
  * Return: an long integer of supplied character
  */
