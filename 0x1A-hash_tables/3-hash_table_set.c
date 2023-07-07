@@ -13,7 +13,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *hash;
 	unsigned long int hash_key;
 
-	if (ht == NULL || key == NULL || strlen(key) == 0 || space(key) == 1)
+	if (ht == NULL || key == NULL || strlen(key) == 0)
 		return (0);
 	dict = malloc(sizeof(hash_node_t));
 	if (!dict)
@@ -36,22 +36,4 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 	}
 	return (1);
-}
-
-/**
- * space - check for space or tab in a string
- * @str: string of character supplied
- *
- * Return: an integer value of 0 otherwise 1
- */
-int space(const char *str)
-{
-	int i = 0;
-
-	for (; str[i] != '\0'; i++)
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-			return (1);
-	}
-	return (0);
 }
