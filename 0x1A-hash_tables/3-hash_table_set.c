@@ -12,7 +12,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *dict;
 	unsigned long int hash_key;
 
-	if (key == NULL || strlen(key) == 0 || strcmp(key, " ") == 0)
+	if (key == NULL || strlen(key) == 0)
 		return (0);
 	dict = malloc(sizeof(hash_node_t));
 	if (!dict)
@@ -22,10 +22,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	dict->value = strdup(value);
 	dict->next = NULL;
 	if (ht->array[hash_key] == NULL)
-	{
 		ht->array[hash_key] = dict;
-		/**printf("%s\n", ht->array[hash_key]->key); */
-	}
 	else
 	{
 		if (ht->array[hash_key]->next == NULL)
@@ -33,7 +30,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		else
 		{
 			dict->next = ht->array[hash_key]->next;
-			ht->array[hash_key]->next = dict;
+			ht->array[hash_key]->next = dict->next;
 		}
 	}
 	return (1);
