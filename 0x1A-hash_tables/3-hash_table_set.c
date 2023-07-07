@@ -10,6 +10,7 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *dict;
+	hash_node_t *hash;
 	unsigned long int hash_key;
 
 	if (ht == NULL || key == NULL || strlen(key) == 0)
@@ -25,12 +26,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[hash_key] = dict;
 	else
 	{
-		if (ht->array[hash_key]->next == NULL)
-			ht->array[hash_key]->next = dict;
+		hash = ht->array[hash_key];
+		if (hash->next == NULL)
+			hash->next = dict;
 		else
 		{
-			dict->next = ht->array[hash_key]->next;
-			ht->array[hash_key]->next = dict;
+			while (hash != NULL)
+			{
+				if (strcmp(hash->key, key) == 0)
+					break;
+				hash = hash->next;
+			}
+			dict->next = hash->next;
+			hash->next = dict;
 		}
 	}
 	return (1);
