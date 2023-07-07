@@ -13,7 +13,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int hash_key;
 
 	dict = malloc(sizeof(hash_node_t));
-	if (!dict || key == NULL)
+	if (!dict || key == NULL || strcmp(key, " ") == 0)
 		return (0);
 	hash_key = key_index((unsigned char *)key, ht->size);
 	dict->key = strdup(key);
@@ -21,7 +21,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	dict->next = NULL;
 
 	if (ht->array[hash_key] == NULL)
+	{
 		ht->array[hash_key] = dict;
+		/** printf("%s\n", ht->array[hash_key]->key); **/
+	}
 	else
 	{
 		if (ht->array[hash_key]->next == NULL)
