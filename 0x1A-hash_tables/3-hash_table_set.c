@@ -31,12 +31,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			hash->next = dict;
 		else
 		{
-			while (hash != NULL)
-			{
-				if (strcmp(hash->key, key) == 0)
-					break;
-				hash = hash->next;
-			}
 			dict->next = hash->next;
 			hash->next = dict;
 		}
