@@ -25,8 +25,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[hash_key] = dict;
 	else
 	{
-		dict->next = ht->array[hash_key];
-		ht->array[hash_key] = dict;
+		if (strcmp(ht->array[hash_key]->key, key) == 0)
+			ht->array[hash_key] = dict;
+		else
+		{
+			dict->next = ht->array[hash_key];
+			ht->array[hash_key] = dict;
+		}
 	}
 	return (1);
 }
