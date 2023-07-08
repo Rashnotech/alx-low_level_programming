@@ -11,19 +11,19 @@ int main(void)
     char *value;
 
     ht = hash_table_create(1024);
-    hash_table_set(ht, "c", "fun");
-    hash_table_set(ht, "python", "awesome");
-    hash_table_set(ht, "Bob", "and Kris love asm");
+    hash_table_set(ht, "Holberton", "is cool");
+    hash_table_set(ht, "Holberton", "is soooo cooool");
+    hash_table_set(ht, "Holberton", "is awesome");
     hash_table_set(ht, "N", "queens");
     hash_table_set(ht, "Asterix", "Obelix");
     hash_table_set(ht, "Betty", "Cool");
     hash_table_set(ht, "98", "Battery Street");
     hash_table_set(ht, "c", "isfun");
 
-    value = hash_table_get(ht, "python");
-    printf("%s:%s\n", "python", value);
-    value = hash_table_get(ht, "Bob");
-    printf("%s:%s\n", "Bob", value);
+    value = hash_table_get(ht, "Holberton");
+    printf("%s:%s\n", "Holberton", value);
+    value = hash_table_get(ht, "Holberton");
+    printf("%s:%s\n", "Holberton", value);
     value = hash_table_get(ht, "N");
     printf("%s:%s\n", "N", value);
     value = hash_table_get(ht, "Asterix");
