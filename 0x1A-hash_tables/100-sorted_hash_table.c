@@ -56,7 +56,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		if (ht->shead == NULL && ht->stail == NULL)
 			ht->shead = dict;
 		else
-			addsort_node(ht, dict);	
+			addsort_node(ht, dict);
 	}
 	else
 	{
@@ -99,11 +99,11 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * shash_table_print_print - a function that print the element in hash table
+ * shash_table_print - a function that print the element in hash table
  * @ht: hash table
  */
 void shash_table_print(const shash_table_t *ht)
-{	
+{
 	unsigned long int i = 0, n = 0;
 	shash_node_t *p;
 
@@ -174,8 +174,8 @@ void shash_table_delete(shash_table_t *ht)
 }
 
 /**
- * addsnode_begin - add node to the snode pointer
- * @head: head pointer
+ * addsort_node - add node to the snode pointer
+ * @ht: hash table
  * @dict: dictionary structure
  */
 void addsort_node(shash_table_t *ht, shash_node_t *dict)
@@ -239,7 +239,7 @@ shash_node_t *shash_table_rev(const shash_table_t *ht)
 
 	if (ht == NULL)
 		return (NULL);
-	tail = ht->shead;	
+	tail = ht->shead;
 	while (tail != NULL)
 	{
 		next = tail->next;
