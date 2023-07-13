@@ -46,18 +46,13 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 	dict->key = strdup(key);
 	dict->value = strdup(value);
-	dict->next = NULL;
-	dict->sprev = NULL;
-	dict->snext = NULL;
+	dict->next = dict->sprev = dict->snext = NULL;
 	hash_key = key_index((unsigned char *)key, ht->size);
-	if (ht->array[hash_key] == NULL)
+	if (!ht->array[hash_key])
 	{
 		ht->array[hash_key] = dict;
 		if (!ht->shead && !ht->stail)
-		{
-			ht->shead = dict;
-			ht->stail = dict;
-		}
+			ht->shead = ht->stail = dict;
 		else
 			addsort_node(ht, dict);
 	}
