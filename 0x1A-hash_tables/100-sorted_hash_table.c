@@ -120,14 +120,18 @@ void shash_table_print(const shash_table_t *ht)
 				if (n)
 					printf(", ");
 				printf("'%s': '%s'", p->key, p->value);
-				n = 1;
-			}
-			while (p && p->next)
-			{
-				if (n)
-					printf(", ");
-				printf("'%s': '%s'", p->key, p->value);
-				p->next = p->next->next;
+				if (p->next)
+				{
+					while (p->next)
+					{
+						if (n)
+							printf(", ");
+						printf("'%s': '%s'", p->key,
+								p->value);
+						p->next = p->next->next;
+						n = 1;
+					}
+				}
 				n = 1;
 			}
 		}
