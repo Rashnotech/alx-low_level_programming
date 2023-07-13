@@ -39,7 +39,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	shash_node_t *dict;
 	unsigned long int hash_key;
 
-	if (ht == NULL || strlen(key) == 0)
+	if (!ht || strlen(key) == 0)
 		return (0);
 	dict = malloc(sizeof(shash_node_t));
 	if (!dict)
@@ -53,8 +53,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	if (ht->array[hash_key] == NULL)
 	{
 		ht->array[hash_key] = dict;
-		if (ht->shead == NULL && ht->stail == NULL)
+		if (!ht->shead && !ht->stail)
+		{
 			ht->shead = dict;
+			ht->stail = dict;
+		}
 		else
 			addsort_node(ht, dict);
 	}
@@ -89,11 +92,11 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	unsigned long int hash_key;
 	shash_node_t *node;
 
-	if (ht == NULL || strlen(key) == 0)
+	if (!ht || strlen(key) == 0)
 		return (NULL);
 	hash_key = key_index((unsigned char *)key, ht->size);
 	node = ht->array[hash_key];
-	if (node->next == NULL)
+	if (!node->next)
 		return (NULL);
 	return (node->value);
 }
@@ -107,7 +110,7 @@ void shash_table_print(const shash_table_t *ht)
 	unsigned long int i = 0, n = 0;
 	shash_node_t *p;
 
-	if (ht == NULL)
+	if (!ht)
 		return;
 	if (ht->size == 0)
 		printf("{}\n");
@@ -117,14 +120,14 @@ void shash_table_print(const shash_table_t *ht)
 		for (; i < ht->size; i++)
 		{
 			p = ht->array[i];
-			if (p != NULL)
+			if (p)
 			{
 				if (n)
 					printf(", ");
 				printf("'%s': '%s'", p->key, p->value);
 				n = 1;
 			}
-			while (p != NULL && p->next != NULL)
+			while (p && p->next)
 			{
 				if (n)
 					printf(", ");
@@ -146,18 +149,18 @@ void shash_table_delete(shash_table_t *ht)
 	unsigned long int i = 0;
 	shash_node_t *temp, *p;
 
-	if (ht == NULL)
+	if (!ht)
 		return;
 	for (; i < ht->size; i++)
 	{
-		if (ht->array[i] != NULL)
+		if (ht->array[i])
 		{
 			free(ht->array[i]->key);
 			free(ht->array[i]->value);
-			if (ht->array[i]->next != NULL)
+			if (ht->array[i]->next)
 			{
 				p = ht->array[i]->next;
-				while (p != NULL)
+				while (p)
 				{
 					temp = p;
 					free(p->key);
@@ -185,21 +188,27 @@ void addsort_node(shash_table_t *ht, shash_node_t *dict)
 	node = ht->shead;
 	if (strcmp(dict->key, ht->shead->key) <= 0)
 	{
-		dict->snext = ht->shead;
 		ht->shead->sprev = dict;
+		dict->snext = ht->shead;
 		ht->shead = dict;
+		if (ht->stail && ht->shead)
+		{
+			if (strcmp(ht->stail->key, ht->shead->key) <= 0)
+				ht->stail = ht->shead;
+		}
 	}
 	else
 	{
-		while (node->snext != NULL && strcmp(dict->key,
+		while (node->snext && strcmp(dict->key,
 					node->snext->key) > 0)
 			node = node->snext;
 		dict->snext = node->snext;
-
-		if (node->snext != NULL)
+		if (node->snext)
 			node->snext->sprev = dict;
 		node->snext = dict;
 		dict->sprev = node;
+		if (!dict->snext)
+			ht->stail = dict;
 	}
 }
 
@@ -213,40 +222,20 @@ void shash_table_print_rev(const shash_table_t *ht)
 	int n = 0;
 	shash_node_t *tail;
 
-	if (ht == NULL)
+	if (!ht)
 		return;
-	tail = shash_table_rev(ht);
-	printf("{");
-	while (tail != NULL)
+	tail = ht->stail;
+	if (tail)
 	{
-		if (n)
-			printf(", ");
-		printf("'%s': '%s'", tail->key, tail->value);
-		tail = tail->snext;
-		n = 1;
+		printf("{");
+		while (tail)
+		{
+			if (n)
+				printf(", ");
+			printf("'%s': '%s'", tail->key, tail->value);
+			tail = tail->sprev;
+			n = 1;
+		}
+		printf("}\n");
 	}
-	printf("}\n");
-}
-
-/**
- * shash_table_rev - a function that reverse the element of a hash table
- * @ht: hash table
- * Return: reversed hash table
- */
-shash_node_t *shash_table_rev(const shash_table_t *ht)
-{
-	shash_node_t *next, *tail, *prev = NULL;
-
-	if (ht == NULL)
-		return (NULL);
-	tail = ht->shead;
-	while (tail != NULL)
-	{
-		next = tail->next;
-		tail->next = prev;
-		prev = tail;
-		tail = next;
-	}
-	tail = prev;
-	return (tail);
 }
