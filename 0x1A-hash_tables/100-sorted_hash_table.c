@@ -39,7 +39,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	shash_node_t *dict;
 	unsigned long int hash_key;
 
-	if (!ht || strlen(key) == 0)
+	if (!ht || strlen(key) == 0 || key == NULL || value == NULL ||
+			ht->size == 0)
 		return (0);
 	dict = malloc(sizeof(shash_node_t));
 	if (!dict)
@@ -111,30 +112,27 @@ void shash_table_print(const shash_table_t *ht)
 
 	if (!ht || !ht->array || ht->size == 0)
 		return;
-	else
+	printf("{");
+	for (; i < ht->size; i++)
 	{
-		printf("{");
-		for (; i < ht->size; i++)
+		p = ht->array[i];
+		if (p)
 		{
-			p = ht->array[i];
-			if (p)
-			{
-				if (n)
-					printf(", ");
-				printf("'%s': '%s'", p->key, p->value);
-				n = 1;
-			}
-			while (p && p->next)
-			{
-				if (n)
-					printf(", ");
-				printf("'%s': '%s'", p->key, p->value);
-				p->next = p->next->next;
-				n = 1;
-			}
+			if (n)
+				printf(", ");
+			printf("'%s': '%s'", p->key, p->value);
+			n = 1;
 		}
-		printf("}\n");
+		while (p && p->next)
+		{
+			if (n)
+				printf(", ");
+			printf("'%s': '%s'", p->key, p->value);
+			p->next = p->next->next;
+			n = 1;
+		}
 	}
+	printf("}\n");
 }
 
 /**
