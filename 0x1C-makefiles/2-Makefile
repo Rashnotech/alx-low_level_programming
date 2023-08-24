@@ -1,11 +1,22 @@
-SRC = main.c school.c
-CC = gcc
-NAME = school
-all: school
-OBJ = main.o school.o
-main.o: main.c m.h
-	$(CC) -c $(SRC)
-school.o: school.c m.h
-	$(CC) -c $(SRC)
-school: $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+# Source files
+SRC := main.c school.c
+
+# Compiler
+CC := gcc
+
+# Executable name
+NAME := school
+
+# Default rule to build the executable
+all: $(NAME)
+
+# Object files
+OBJ := $(SRC:.c=.o)
+
+#Rule to build the executable
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ)
+%.o : %.c
+	$(CC) -c $< -o $@
+clean:
+	rm -f $(OBJ) $(NAME)
