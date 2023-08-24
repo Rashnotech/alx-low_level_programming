@@ -1,2 +1,4 @@
+# using all rule builds your executable
+all: school
 school: main.c school.c m.h
 	gcc main.c school.c -o school
