@@ -1,20 +1,19 @@
 # Source files
-SRC := main.c school.c
+SRC = main.c school.c
 
 # Compiler
-CC := gcc
+CC = gcc
 
 # Executable name
-NAME := school
-
+NAME = school
 # Default rule to build the executable
 all: $(NAME)
 
+OBJ = $(SRC:.c=.o)
 # Object files
-OBJ := $(SRC:.c=.o)
+%.o: %.c
+	$(CC) -c -o $@ $<
 
 #Rule to build the executable
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
-%.o : %.c
-	$(CC) -c $< -o $@
+	$(CC) $(OBJ) -o $(NAME)
