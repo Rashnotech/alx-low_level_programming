@@ -24,4 +24,5 @@ oclean:
 	rm -f *.o
 # deletes all emacs and vim temporary files, the executable and object files
 fclean: clean oclean
-.DEFAULT: all
+.DEFAULT:
+	@echo ""
