@@ -2,6 +2,7 @@ CC = gcc
 NAME = school
 SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
+RM = rm -f
 
 .PHONY: oclean clean all re
 
@@ -13,14 +14,13 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-re: oclean all
-RM: fclean
+re: fclean all
 
 #deletes all emacs and vim temporary file along with executable
 clean:
-	rm -f *~ school
+	$(RM) *~ $(NAME)
 # deletes the object files
 oclean:
-	rm -f main.o school.o
+	$(RM) $(OBJ)
 # deletes all emacs and vim temporary files, the executable and object files
 fclean: clean oclean
