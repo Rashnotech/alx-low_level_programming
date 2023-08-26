@@ -18,11 +18,9 @@ RM: fclean
 
 #deletes all emacs and vim temporary file along with executable
 clean:
-	rm -f *~ $(NAME)
+	rm -f *~ school
 # deletes the object files
 oclean:
-	rm -f *.o
+	rm -f main.o school.o
 # deletes all emacs and vim temporary files, the executable and object files
 fclean: clean oclean
-.DEFAULT:
-	@echo ""
