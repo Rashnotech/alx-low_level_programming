@@ -1,1 +1,2 @@
 # Search Algorithms
+## Linear Search:
