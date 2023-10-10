@@ -14,17 +14,12 @@ int binary_search(int *array, size_t size, int value)
 		return (-1);
 	while (x <= y)
 	{
+		print_array(array, x, y);
 		i = x + (y - x) / 2;
 		if (array[i] < value)
-		{
-			print_array(array, x, y);
 			x = i + 1;
-		}
 		else if (array[i] > value)
-		{
-			print_array(array, x, y);
 			y = i - 1;
-		}
 		else
 			return (i);
 
@@ -34,6 +29,7 @@ int binary_search(int *array, size_t size, int value)
 
 /**
  * print_array - print element in an array
+ * @array: a pointer the first number
  * @index: start point to print
  * @size: end point to print
  */
