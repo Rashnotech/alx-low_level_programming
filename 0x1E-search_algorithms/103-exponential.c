@@ -32,10 +32,11 @@ int exponential_search(int *array, size_t size, int value)
  */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t left = size / 2, right = size, mid;
+	size_t left, right = size, mid;
 
 	if (!array || size == 0)
 		return (-1);
+	left = size % 2 == 0 ? size / 2 : size / 2 + 1;
 	while (left <= right)
 	{
 		print_array(array, left, size + 1);
