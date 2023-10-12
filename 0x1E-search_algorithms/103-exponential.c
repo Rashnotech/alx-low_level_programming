@@ -16,7 +16,8 @@ int exponential_search(int *array, size_t size, int value)
 	{
 		while (bnd < size && array[bnd] < value)
 		{
-			printf("Value check array[%lu] = [%d]\n", bnd, array[bnd]);
+			printf("Value check array[%lu] = [%d]\n"
+					bnd, array[bnd]);
 			prev = bnd;
 			bnd *= 2;
 		}
@@ -63,12 +64,12 @@ int binary_search(int *array, size_t size, int value)
  */
 void print_array(int *array, size_t index, size_t size)
 {
-        printf("Searching in array: ");
-        for (; index < size; index++)
-        {
-                printf("%d", array[index]);
-                if (index < size - 1)
-                        printf(", ");
-        }
-        putchar(10);
+	printf("Searching in array: ");
+	for (; index < size; index++)
+	{
+		printf("%d", array[index]);
+		if (index < size - 1)
+			printf(", ");
+	}
+	putchar(10);
 }
