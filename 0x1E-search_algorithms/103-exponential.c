@@ -12,13 +12,14 @@ int exponential_search(int *array, size_t size, int value)
 
 	if (!array || size == 0)
 		return (-1);
-	if (array[0] == value)
-		return (value);
-	while (bnd < size && array[bnd] < value)
+	if (array[0] != value)
 	{
-		printf("Value check array[%lu] = [%d]\n", bnd, array[bnd]);
-		prev = bnd;
-		bnd *= 2;
+		while (bnd < size && array[bnd] < value)
+		{
+			printf("Value check array[%lu] = [%d]\n", bnd, array[bnd]);
+			prev = bnd;
+			bnd *= 2;
+		}
 	}
 	bnd = bnd < size ? bnd : size - 1;
 	printf("Value found between indexes [%lu] and [%lu]\n", prev, bnd);
