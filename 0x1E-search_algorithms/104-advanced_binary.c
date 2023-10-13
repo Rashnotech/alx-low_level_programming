@@ -4,6 +4,7 @@
  * @array: a pointer to the first element of the array
  * @size: the number of elements
  * @value: the value to search
+ * Return: searched value otherwise -1
  */
 int advanced_binary(int *array, size_t size, int value)
 {
@@ -18,6 +19,7 @@ int advanced_binary(int *array, size_t size, int value)
  * @left: Integer
  * @right: Integer
  * @value: the search value
+ * Return: search value otherwise -1
  */
 int binary_recursive(int *array, int left, int right, int value)
 {
@@ -43,13 +45,12 @@ int binary_recursive(int *array, int left, int right, int value)
  */
 void print_array(int *array, size_t index, size_t size)
 {
-        printf("Searching in array: ");
-        for (; index <= size; index++)
-        {
-                printf("%d", array[index]);
-                if (index < size)
-                        printf(", ");
-        }
-        putchar(10);
+	printf("Searching in array: ");
+	for (; index <= size; index++)
+	{
+		printf("%d", array[index]);
+		if (index < size)
+			printf(", ");
+	}
+	putchar(10);
 }
-
